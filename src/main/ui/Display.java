@@ -11,13 +11,13 @@ public class Display {
     private Category loans;
     private Scanner scanner;
 
-    //TODO: taken from TellerApp
+    //Inspiration taken from TellerApp
     //EFFECTS: runs the application
     public Display() {
         beginDisplay();
     }
 
-    //TODO: taken from TellerApp
+    //Inspiration taken from TellerApp
     //MODIFIES: this
     //EFFECTS: processes the user input
     public void beginDisplay() {
@@ -28,7 +28,8 @@ public class Display {
         runDisplay();
     }
 
-    //TODO: SPECIFY THIS PLS
+    //Inspiration taken from TellerApp
+    //EFFECTS: displays main menu and options to user
     public void runDisplay() {
         boolean continueRunning = true;
         String input = null;
@@ -52,7 +53,6 @@ public class Display {
         }
     }
 
-    //TODO: Reference the TellerApp
     //MODIFIES: this
     //EFFECTS: initializes the categories
     public void instantiateCategories() {
@@ -62,15 +62,13 @@ public class Display {
         scanner = new Scanner(System.in);
     }
 
-    //TODO: SPECIFY THIS PLS SIR
+    //EFFECTS: records the name of a new Contact
     public String provideContactsName() {
         System.out.println("What is the name of the Contact?");
         String name = scanner.nextLine();
         return name;
     }
 
-    //TODO: BRUH IT MUST BE 25 LINES OR LESS
-    //MODIFIES: this
     //EFFECTS: Creates a new Contact
     public void createContact() {
         String name = provideContactsName();
@@ -113,7 +111,7 @@ public class Display {
         }
     }
 
-    //TODO: SPECIFY THIS SHIT
+    //EFFECTS: presents the user with options to select a category or return to menu
     public void chooseCategory() {
         System.out.println("Pick a Category: ");
         System.out.println("\t[d] <-- Debts");
@@ -129,7 +127,7 @@ public class Display {
         }
     }
 
-    //TODO: SPECIFY THIS DOG SHIT
+    //EFFECTS: presents user options within their chosen category
     public void displayCategory(String category) {
         System.out.println("Select an option: ");
         System.out.println("\t[1] <-- Displays all Contacts in this Category");
@@ -146,7 +144,7 @@ public class Display {
         }
     }
 
-    //TODO: PLS SPECIFY THIS
+    //EFFECTS: presents options to user within debts category
     public void displayDebts(int input) {
         if (input == 1) {
             displayContactsDebts();
@@ -157,7 +155,7 @@ public class Display {
         }
     }
 
-    //TODO: SPECIFY THIS DUDE
+    //EFFECTS: presents options to user within loans category
     public void displayLoans(int input) {
         if (input == 1) {
             displayContactsLoans();
@@ -168,7 +166,7 @@ public class Display {
         }
     }
 
-    //TODO: SPECIFY THIS HSIH FEIS FESIHFESIFHESIFHESIFJESIFJSEIJ
+    //EFFECTS: presents options to user within neutral category
     public void displayNeutral(int input) {
         if (input == 1) {
             displayContactsNeutral();
@@ -180,7 +178,7 @@ public class Display {
     }
 
 
-    //TODO: SPECIFY THIS
+    //EFFECTS: displays all the contacts in the debts category
     public void displayContactsDebts() {
         LinkedList<Contact> debtsList = debts.getContactsList();
         String contactNames = "";
@@ -193,7 +191,7 @@ public class Display {
         returnToCategories();
     }
 
-    //TODO: PLS SPECIFY THIS MAN
+    //EFFECTS: displays all the contacts in the loans category
     public void displayContactsLoans() {
         LinkedList<Contact> loansList = loans.getContactsList();
         String contactNames = "";
@@ -206,7 +204,7 @@ public class Display {
         returnToCategories();
     }
 
-    //TODO: SPECIFY THIS TOO DUD
+    //MODIFIES: displays all the contacts in the neutral category
     public void displayContactsNeutral() {
         LinkedList<Contact> neutralList = neutral.getContactsList();
         String contactNames = "";
@@ -219,7 +217,8 @@ public class Display {
         returnToCategories();
     }
 
-    //TODO: SPECIFY THIS SHIT MAN WHA ARE U DOING
+    //EFFECTS: If contact with name is in debts category, it presents user with options to perform on the contact, else
+    //         informs the user that no such contact exists in this category
     public void findContactDebts(String name) {
         LinkedList<Contact> debtsList = debts.contactsList;
         Contact contact = null;
@@ -235,7 +234,8 @@ public class Display {
         }
     }
 
-    //TODO: E
+    //EFFECTS: If contact with name is in loans category, it presents user with options to perform on the contact, else
+    //         informs the user that no such contact exists in this category
     public void findContactsLoans(String name) {
         LinkedList<Contact> loansList = loans.contactsList;
         Contact contact = null;
@@ -251,7 +251,9 @@ public class Display {
         }
     }
 
-    //TODO: B
+    //EFFECTS: If contact with name is in neutral category, it presents user with 4
+    //         options to perform on the contact, else
+    //         informs the user that no such contact exists in this category
     public void findContactsNeutral(String name) {
         LinkedList<Contact> neutralList = neutral.contactsList;
         Contact contact = null;
@@ -267,7 +269,7 @@ public class Display {
         }
     }
 
-    //TODO: IM BEGGING USEUGSEUGSEUG
+    //EFFECTS: prompts the user with messages depicting their options
     public void selectOptionsContactDetails() {
         System.out.println("Select an option: ");
         System.out.println("\t[1] <-- Details of the Contact");       //ABSTRACT
@@ -276,7 +278,7 @@ public class Display {
         System.out.println("\t[4] <-- Return to Categories");                       //ABSTRACT
     }
 
-    //TODO: SPECIFY MAN
+    //EFFECTS: prompts the user to pick an option
     public void contactDetailsDebts(Contact c) {
         selectOptionsContactDetails();
         int input = scanner.nextInt();
@@ -293,7 +295,7 @@ public class Display {
         }
     }
 
-    //TODO: egg
+    //EFFECTS: displays all the contacts in the loans category
     public void contactDetailsLoans(Contact c) {
         selectOptionsContactDetails();
         int input = scanner.nextInt();
@@ -310,7 +312,7 @@ public class Display {
         }
     }
 
-    //TODO: BREAD
+    //EFFECTS: displays all the contacts in the neutral category
     public void contactDetailsNeutral(Contact c) {
         selectOptionsContactDetails();
         int input = scanner.nextInt();
@@ -327,47 +329,54 @@ public class Display {
         }
     }
 
-    //TODO: SPECIFY THIS PLS DUD
+    //EFFECTS: returns to choosing categories
     public void returnToCategories() {
         chooseCategory();
     }
 
-    //TODO: SPEICYF I SDO SFISJFISJ
+    //EFFECTS: returns to the menu
     public void returnToMenu() {
         runDisplay();
     }
 
-    //TODO: SPIEFJIFSIFJSEFSFSIOIFWJFOIJOJIWOIJWOIWOIFOIWFI
+    //MODIFIES: this
+    //EFFECTS: removes contact c from debts
     public void removeContactsDebts(Contact c) {
         debts.removeContact(c);
     }
 
-    //TODO: sdasidjadijadaidSADDA
+    //MODIFIES: this
+    //EFFECTS: removes contact c from loans
     public void removeContactsLoans(Contact c) {
         loans.removeContact(c);
     }
 
-    //TODO: SDIASJDAIJDAIDJAIJIj
+    //MODIFIES: this
+    //EFFECTS: removes contact c from neutral
     public void removeContactsNeutral(Contact c) {
         neutral.removeContact(c);
     }
 
-    //TODO: DON'T RUSH
+    //MODIFIES: this
+    //EFFECTS: adds contact c to neutral
     public void addContactToNeutral(Contact c) {
         neutral.addContact(c);
     }
 
-    //TODO: IASDIAJDIADJA
+    //MODIFIES: this
+    //EFFECTS: adds contact c to debts
     public void addContactToDebts(Contact c) {
         debts.addContact(c);
     }
 
-    //TODO: ITS 1:01
+    //MODIFIES: this
+    //EFFECTS: adds contact c to loans
     public void addContactToLoans(Contact c) {
         loans.addContact(c);
     }
 
-    //TODO: GOOD SHIT LETS GOOOOOO
+    //MODIFIES: this
+    //EFFECTS: If contact's transAmount is 0, remove it from debts and add it to neutral
     public void debtsToNeutral(Contact c) {
         if (c.getTransAmount() == 0) {
             removeContactsDebts(c);
@@ -375,7 +384,8 @@ public class Display {
         }
     }
 
-    //TODO: GRIND DONT STOP
+    //MODIFIES: this
+    //EFFECTS: If contact's transAmount is 0, remove it from loans and add it to neutral
     public void loansToNeutral(Contact c) {
         if (c.getTransAmount() == 0) {
             removeContactsLoans(c);
@@ -383,7 +393,7 @@ public class Display {
         }
     }
 
-    //TODO: sadidjaidajJDAJSIDAIDJA
+    //EFFECTS: displays the details of contact c
     public void getDetails(Contact c) {
         int year = c.getYear();
         int month = Integer.valueOf(c.getMonth());
@@ -402,16 +412,15 @@ public class Display {
         }
     }
 
-    //TODO: NICE U GOT THIS
+    //EFFECTS: presents the user with options about changing the transAmount
     public void updateTransactionAmountOptions() {
         System.out.println("Would you like to increase or decrease the Transaction Amount?");
         System.out.println("[d] <-- Decrease");
         System.out.println("[i] <-- Increase");
     }
 
-    //TODO: PLS PLS PLS ~~ABSTRACT~~ THIS UPDATETRANSACTIONAMOUNTDEBTS ITS SO FUCKIN BIG
-
-    //TODO: IM BEGGING U
+    //MODIFIES: this
+    //EFFECTS: updates transAmount for debts of contact c depending on user input
     public void updateTransactionAmountDebts(Contact c) {
         updateTransactionAmountOptions();
         String input = scanner.nextLine();
@@ -432,6 +441,8 @@ public class Display {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: updates transAmount for loans of contact c depending on user input
     public void updateTransactionAmountLoans(Contact c) {
         updateTransactionAmountOptions();
         String input = scanner.nextLine();
@@ -452,6 +463,8 @@ public class Display {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: updates transAmount for neutral of contact c depending on user input
     public void updateTransactionAmountNeutral(Contact c) {
         updateTransactionAmountOptions();
         String input = scanner.nextLine();
@@ -470,7 +483,8 @@ public class Display {
 
     }
 
-    //TODO: DO IT LETS GOOOOO
+    //MODIFIES: this
+    //EFFECTS: Moves a contact to appropriate category depending on user input for transType
     public void neutralToCategory(Contact c, String type) {
         if (type.equals("d")) {
             removeContactsNeutral(c);
