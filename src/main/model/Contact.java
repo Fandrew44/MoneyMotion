@@ -96,17 +96,27 @@ public class Contact {
     //MODIFIES: this
     //EFFECTS: Changes the Transaction Type to neutral, debts, or loans depending on newCategory
     public void updateTransType(String newCategory) {
-        switch (newCategory) {
-            case "n":
-                transType = "n";
-                break;
-            case "d":
-                transType = "d";
-                break;
-            case "l":
-                transType = "l";
-                break;
+
+        if (newCategory.equals("d")) {
+            transType = "d";
+        } else if (newCategory.equals("l")) {
+            transType = "l";
+        } else {
+            transType = "n";
         }
+//
+//
+//        switch (newCategory) {
+//            case "n":
+//                transType = "n";
+//                break;
+//            case "d":
+//                transType = "d";
+//                break;
+//            case "l":
+//                transType = "l";
+//                break;
+//        }
     }
 
 
