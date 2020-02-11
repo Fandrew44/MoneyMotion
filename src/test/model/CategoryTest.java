@@ -43,13 +43,20 @@ public class CategoryTest {
     }
 
     @Test
-    public void testRemoveContact() {
+    public void testRemoveContactInList() {
         assertFalse(c.isContactInList("Jon"));
         c.addContact(jon);
         assertTrue(c.isContactInList("Jon"));
 
         c.removeContact(jon);
         assertFalse(c.isContactInList("Jon"));
+    }
+
+    @Test
+    public void testRemoveContactNotInList() {
+        assertFalse(c.isContactInList("Jim"));
+        c.removeContact(jim);
+        assertFalse(c.isContactInList("Jim"));
     }
 
     @Test
@@ -83,7 +90,26 @@ public class CategoryTest {
         assertFalse(c.isContactInList("Jim"));
     }
 
+    @Test
+    public void testIsContactInListSizeOne() {
+        assertFalse(c.isContactInList("Jeff"));
+        c.addContact(jeff);
 
+        assertTrue(c.isContactInList("Jeff"));
+        assertFalse(c.isContactInList("jeff"));
+        assertFalse(c.isContactInList("Jon"));
+    }
 
+    @Test
+    public void testIsContactInListMultipleContacts() {
+        assertFalse(c.isContactInList("Jeff"));
+
+        c.addContact(jon);
+        c.addContact(jim);
+
+        assertTrue(c.isContactInList("Jon"));
+        assertTrue(c.isContactInList("Jim"));
+        assertFalse(c.isContactInList("Jeff"));
+    }
 
 }

@@ -22,7 +22,7 @@ public class ContactTest {
         assertEquals(2020, c.getYear());
         assertEquals(2, c.getMonth());
         assertEquals(4, c.getDay());
-        assertEquals(" ", c.getTransType());
+        assertEquals("d", c.getTransType());
         assertEquals(" ", c.getStatus());
     }
 
@@ -46,7 +46,7 @@ public class ContactTest {
     }
 
     @Test
-    public void incTransAmountZero() {
+    public void testIncTransAmountZero() {
         assertEquals(35.00, c.getTransAmount());
         c.incTransAmount(0);
 
@@ -54,7 +54,7 @@ public class ContactTest {
     }
 
     @Test
-    public void incTransAmountMoreThanZero() {
+    public void testIncTransAmountMoreThanZero() {
         assertEquals(35.00, c.getTransAmount());
         c.incTransAmount(45.00);
 
@@ -62,7 +62,7 @@ public class ContactTest {
     }
 
     @Test
-    public void decTransAmountZero() {
+    public void testDecTransAmountZero() {
         assertEquals(35.00, c.getTransAmount());
         c.decTransAmount(0);
 
@@ -70,7 +70,7 @@ public class ContactTest {
     }
 
     @Test
-    public void decTransAmountMoneyLeftover() {
+    public void testDecTransAmountMoneyLeftover() {
         assertEquals(35.00, c.getTransAmount());
         c.decTransAmount(25.00);
 
@@ -78,11 +78,41 @@ public class ContactTest {
     }
 
     @Test
-    public void decTransAmountNoMoney() {
+    public void testDecTransAmountNoMoney() {
         assertEquals(35.00, c.getTransAmount());
         c.decTransAmount(35.00);
 
         assertEquals(0, c.getTransAmount());
+    }
+
+    @Test
+    public void testUpdateTransTypeSame() {
+        assertEquals("d", c.getTransType());
+
+        c.updateTransType("d");
+        assertEquals("d", c.getTransType());
+    }
+
+    @Test
+    public void testUpdateTransTypeDifferentOnce() {
+        assertEquals("d", c.getTransType());
+
+        c.updateTransType("n");
+        assertEquals("n", c.getTransType());
+    }
+
+    @Test
+    public void testUpdateTransTypeMultiple() {
+        assertEquals("d", c.getTransType());
+
+        c.updateTransType("l");
+        assertEquals("l", c.getTransType());
+
+        c.updateTransType("d");
+        assertEquals("d", c.getTransType());
+
+        c.updateTransType("n");
+        assertEquals("n", c.getTransType());
     }
 
 }

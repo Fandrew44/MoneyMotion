@@ -13,7 +13,6 @@ public class Contact {
     private String transType;
     private String status;
 
-    //TODO: HOW TO DO THE LOCALE DATE????
     public Contact(String n, String description, double transAmount, int year, int month, int day, String transType) {
         this.name = n;
         this.description = description;
@@ -86,7 +85,7 @@ public class Contact {
         transAmount += amount;
     }
 
-    //REQUIRES: amount >= 0 and amount >= transAmount
+    //REQUIRES: amount >= 0 and amount <= transAmount
     //MODIFIES: this
     //EFFECTS: decreases the TransAmount by amount
     public void decTransAmount(double amount) {
@@ -95,18 +94,17 @@ public class Contact {
 
     //REQUIRES: newCategory string length == 1
     //MODIFIES: this
-    //EFFECTS: Changes the Transaction Type to neutral if in the neutral category,
-    //         debts if in the debts category, and loans if in the loans category
+    //EFFECTS: Changes the Transaction Type to neutral, debts, or loans depending on newCategory
     public void updateTransType(String newCategory) {
         switch (newCategory) {
             case "n":
-                transType = "Neutral";
+                transType = "n";
                 break;
             case "d":
-                transType = "Debts";
+                transType = "d";
                 break;
             case "l":
-                transType = "Loans";
+                transType = "l";
                 break;
         }
     }

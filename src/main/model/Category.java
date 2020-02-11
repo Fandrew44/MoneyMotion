@@ -25,7 +25,7 @@ public abstract class Category {
         return contactsList;
     }
 
-    //EFFECTS: produces true if a Contact named c is in contacts list, else false
+    //EFFECTS: produces true if a Contact with the same name is in contacts list, else false
     public boolean isContactInList(String name) {
         boolean result = false;
 
