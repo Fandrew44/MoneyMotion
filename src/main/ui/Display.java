@@ -41,18 +41,13 @@ public class Display {
             input = scanner.nextLine();
             input.toLowerCase();
 
-            //TODO: TURN TO IF STATEMENTS????
-            switch (input) {
-                case "c":
-                    createContact();
-                    break;
-                case "s":
-                    chooseCategory();
-                    break;
-                case "q":
-                    continueRunning = false;
-                    System.out.println("Thank you, come again.");
-                    break;
+            if (input.equals("c")) {
+                createContact();
+            } else if (input.equals("s")) {
+                chooseCategory();
+            } else {
+                continueRunning = false;
+                System.out.println("Thank you, come again.");
             }
         }
     }
@@ -67,12 +62,18 @@ public class Display {
         scanner = new Scanner(System.in);
     }
 
+    //TODO: SPECIFY THIS PLS SIR
+    public String provideContactsName() {
+        System.out.println("What is the name of the Contact?");
+        String name = scanner.nextLine();
+        return name;
+    }
+
     //TODO: BRUH IT MUST BE 25 LINES OR LESS
     //MODIFIES: this
     //EFFECTS: Creates a new Contact
     public void createContact() {
-        System.out.println("What is the name of the Contact?");
-        String name = scanner.nextLine();
+        String name = provideContactsName();
         System.out.println("Provide a quick description of the Contact");
         String description = scanner.nextLine();
         System.out.println("How much money was involved in the transaction?");
