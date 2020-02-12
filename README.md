@@ -16,5 +16,4 @@
 > - As a user, I want to be able to select a "Category" and see which "Contacts" belong inside it
 > - As a user, I want to be able to search for a Contact by their *name* in a Category
 > - As a user, I want to be able to select a "Contact" and see the details of that Contact
-> - **OPTIONAL (HAVE TO INPLEMENT): **As a user, I want to be able to select a Category and see the total transaction amount within it
 
