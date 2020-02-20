@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Tests operations in the Loans class
 public class LoansTest {
 
     private Category loans;

@@ -7,7 +7,7 @@
 >well as provide others with a reliable form of keeping track of where their money has gone and where it is going. Personal finance is only becoming more of a necessity in our modern world, and
 >I'm planning for this application to not only raise more awareness towards it, but also to provide a potential solution.
 >
-##User Stories
+## User Stories
 >
 > - As a user, I want to be able to create new Contacts and provide additional details about them
 >> **Details:** Name, a brief description, transaction amount, and date
@@ -16,4 +16,10 @@
 > - As a user, I want to be able to select a "Category" and see which "Contacts" belong inside it
 > - As a user, I want to be able to search for a Contact by their *name* in a Category
 > - As a user, I want to be able to select a "Contact" and see the details of that Contact
+> - As a user, I want to be able to manually save all the Contacts and their details in each Category at anytime to file
+> - As a user, when exiting the program, I want to be able to choose to save all the Contacts and their details in each Category to file
+> - As a user, I want to be able to load all of the Contacts that were previously placed in each Category from file automatically when the program starts
+
+
+
 

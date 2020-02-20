@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Tests operations for the Neutral class
 public class NeutralTest {
 
     private Category neutral;
