@@ -1,20 +1,45 @@
 package ui;
 
 import model.*;
+import persistence.ContactsReader;
+import persistence.ContactsWriter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+// Displays the application through a console UI
 public class Display {
     private Category neutral;
     private Category debts;
     private Category loans;
     private Scanner scanner;
+    private static File FILE = new File("./data/SavedContacts.txt");
 
     //Inspiration taken from TellerApp
     //EFFECTS: runs the application
     public Display() {
         beginDisplay();
+    }
+
+    //Inspiration taken from the TellerApp
+    //MODIFIES: this
+    //EFFECTS: Loads Contacts from FILE, else prints error msg and
+    //         exits the program if the file is not found
+    public void loadContacts(File file) {
+        ArrayList<Contact> contacts = null;
+        try {
+            contacts = ContactsReader.readContacts(FILE);
+        } catch (FileNotFoundException e) {
+            System.out.println("That file does not exist!");
+            System.exit(0);
+        }
+
+        for (Contact c : contacts) {
+            putIntoCategory(c);
+        }
     }
 
     //Inspiration taken from TellerApp
@@ -24,8 +49,35 @@ public class Display {
         instantiateCategories();
 
         System.out.println("Welcome to MoneyMotion!");
-
+        System.out.println("Loading Contacts...");
+        loadContacts(FILE);
         runDisplay();
+    }
+
+    //Inspiration taken from the TellerApp
+    //EFFECTS: Writes all Contacts and their properties to FILE
+    public void saveContacts() {
+        ContactsWriter cw = null;
+        try {
+            cw = new ContactsWriter(FILE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Contacts could not be saved.");
+        }
+
+        for (Contact c : debts.getContactsList()) {
+            cw.write(c);
+        }
+
+        for (Contact c : loans.getContactsList()) {
+            cw.write(c);
+        }
+
+        for (Contact c : neutral.getContactsList()) {
+            cw.write(c);
+        }
+
+        System.out.println("Contacts successfully saved!");
+        cw.close();
     }
 
     //Inspiration taken from TellerApp
@@ -37,19 +89,36 @@ public class Display {
         while (continueRunning) {
             System.out.println("Please select an option: ");
             System.out.println("\t[c] <-- Create a Contact");
-            System.out.println("\t[s] <-- Select a Category");
+            System.out.println("\t[p] <-- Select a Category");
+            System.out.println("\t[s] <-- Save your Contacts");
             System.out.println("\t[q] <-- Quit");
             input = scanner.nextLine();
             input.toLowerCase();
 
             if (input.equals("c")) {
                 createContact();
-            } else if (input.equals("s")) {
+            } else if (input.equals("p")) {
                 chooseCategory();
+            } else if (input.equals("s")) {
+                saveContacts();
             } else {
+                saveBeforeExiting();
                 continueRunning = false;
                 System.out.println("Thank you, come again.");
+                System.exit(0);
             }
+        }
+    }
+
+    //EFFECTS: presents user with option to save contacts prior to exiting the program
+    public void saveBeforeExiting() {
+        System.out.println("Would you like to save your Contacts?");
+        System.out.println("\t[y] <-- Yes");
+        System.out.println("\t[n] <-- No");
+        String answer = scanner.nextLine();
+
+        if (answer.equals("y")) {
+            saveContacts();
         }
     }
 
@@ -217,7 +286,7 @@ public class Display {
         returnToCategories();
     }
 
-    //MODIFIES: displays all the contacts in the neutral category
+    //EFFECTS: displays all the contacts in the neutral category
     public void displayContactsNeutral() {
         LinkedList<Contact> neutralList = neutral.getContactsList();
         String contactNames = "";
@@ -362,44 +431,76 @@ public class Display {
     //MODIFIES: this
     //EFFECTS: removes contact c from debts
     public void removeContactsDebts(Contact c) {
-        debts.removeContact(c);
+        System.out.println("Are you sure you'd like to remove this Contact?");
+        System.out.println("\t[y] <-- Yes");
+        System.out.println("\t[n] <-- No");
+        String answer = scanner.nextLine();
+
+        if (answer.equals("y")) {
+            debts.removeContact(c);
+            System.out.println("Contact successfully removed!");
+        } else {
+            returnToCategories();
+        }
     }
 
     //MODIFIES: this
     //EFFECTS: removes contact c from loans
     public void removeContactsLoans(Contact c) {
-        loans.removeContact(c);
+        System.out.println("Are you sure you'd like to remove this Contact?");
+        System.out.println("\t[y] <-- Yes");
+        System.out.println("\t[n] <-- No");
+        String answer = scanner.nextLine();
+
+        if (answer.equals("y")) {
+            loans.removeContact(c);
+            System.out.println("Contact successfully removed!");
+        } else {
+            returnToCategories();
+        }
     }
 
     //MODIFIES: this
     //EFFECTS: removes contact c from neutral
     public void removeContactsNeutral(Contact c) {
-        neutral.removeContact(c);
+        System.out.println("Are you sure you'd like to remove this Contact?");
+        System.out.println("\t[y] <-- Yes");
+        System.out.println("\t[n] <-- No");
+        String answer = scanner.nextLine();
+
+        if (answer.equals("y")) {
+            neutral.removeContact(c);
+            System.out.println("Contact successfully removed!");
+        } else {
+            returnToCategories();
+        }
     }
 
     //MODIFIES: this
     //EFFECTS: adds contact c to neutral
     public void addContactToNeutral(Contact c) {
         neutral.addContact(c);
+        c.updateTransType("n");
     }
 
     //MODIFIES: this
     //EFFECTS: adds contact c to debts
     public void addContactToDebts(Contact c) {
         debts.addContact(c);
+        c.updateTransType("d");
     }
 
     //MODIFIES: this
     //EFFECTS: adds contact c to loans
     public void addContactToLoans(Contact c) {
-        loans.addContact(c);
+        c.updateTransType("l");
     }
 
     //MODIFIES: this
     //EFFECTS: If contact's transAmount is 0, remove it from debts and add it to neutral
     public void debtsToNeutral(Contact c) {
         if (c.getTransAmount() == 0) {
-            removeContactsDebts(c);
+            debts.removeContact(c);
             addContactToNeutral(c);
         }
     }
@@ -408,7 +509,7 @@ public class Display {
     //EFFECTS: If contact's transAmount is 0, remove it from loans and add it to neutral
     public void loansToNeutral(Contact c) {
         if (c.getTransAmount() == 0) {
-            removeContactsLoans(c);
+            loans.removeContact(c);
             addContactToNeutral(c);
         }
     }

@@ -1,10 +1,13 @@
 package model;
 
+import persistence.ContactsReader;
+import persistence.SaveableData;
+
+import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.time.Month;
 
 //Represents a single contact
-public class Contact {
+public class Contact implements SaveableData {
 
     private String name;
     private String description;
@@ -104,7 +107,27 @@ public class Contact {
         } else {
             transType = "n";
         }
-//
+    }
+
+    //Inspiration taken from the TellerApp
+    @Override
+    public void save(PrintWriter pw) {
+        pw.print(name);
+        pw.print(ContactsReader.DELIMITER);
+        pw.print(description);
+        pw.print(ContactsReader.DELIMITER);
+        pw.print(transAmount);
+        pw.print(ContactsReader.DELIMITER);
+        pw.print(getYear());
+        pw.print(ContactsReader.DELIMITER);
+        pw.print(getMonth());
+        pw.print(ContactsReader.DELIMITER);
+        pw.print(getDay());
+        pw.print(ContactsReader.DELIMITER);
+        pw.println(transType);
+    }
+
+    //
 //
 //        switch (newCategory) {
 //            case "n":
@@ -117,7 +140,7 @@ public class Contact {
 //                transType = "l";
 //                break;
 //        }
-    }
+
 
 
 

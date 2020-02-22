@@ -115,4 +115,5 @@ public class ContactTest {
         assertEquals("n", c.getTransType());
     }
 
+
 }
