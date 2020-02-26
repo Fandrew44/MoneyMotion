@@ -1,4 +1,5 @@
-Jeffrey,an intelligent fellow,55.68,2020,2,19,d
 Andreas,a foolhardy but courageous lad,46.75,2020,1,27,l
 Sandon,a good badminton player,45.0,2020,1,25,l
+inkev,cool chef ,6000000.0,2020,2,26,l
 Jon,sexy dud,0.0,2020,1,18,n
+Jeffrey,an intelligent fellow,0.0,2020,2,19,n
