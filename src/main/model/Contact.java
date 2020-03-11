@@ -4,7 +4,9 @@ import persistence.ContactsReader;
 import persistence.SaveableData;
 
 import java.io.PrintWriter;
+import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.Locale;
 
 //Represents a single contact
 public class Contact implements SaveableData {
@@ -35,6 +37,12 @@ public class Contact implements SaveableData {
 
     public double getTransAmount() {
         return transAmount;
+    }
+
+    public String toString() {
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(Locale.CANADA);
+        String amount = numberFormat.format(transAmount);
+        return amount;
     }
 
     public int getYear() {

@@ -6,8 +6,10 @@ import persistence.ContactsWriter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Scanner;
 
 // Displays the application through a console UI
@@ -54,6 +56,19 @@ public class Display {
         runDisplay();
     }
 
+    public String printFinancialSituation() {
+        String totalFinancesMessage = "";
+        double totalFinances = loans.totalFinances() + debts.totalFinances();
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(Locale.CANADA);
+        String amount = numberFormat.format(totalFinances);
+        if (totalFinances < 0) {
+            totalFinancesMessage = "-" + amount;
+        } else {
+            totalFinancesMessage = "+" + amount;
+        }
+        return totalFinancesMessage;
+    }
+
     //Inspiration taken from the TellerApp
     //EFFECTS: Writes all Contacts and their properties to FILE
     public void saveContacts() {
@@ -80,6 +95,16 @@ public class Display {
         cw.close();
     }
 
+    //EFFECTS: presents the user with options in the menu screen
+    public void menuOptions() {
+        System.out.println("Current Financial Situation: " + printFinancialSituation());
+        System.out.println("Please select an option: ");
+        System.out.println("\t[c] <-- Create a Contact");
+        System.out.println("\t[p] <-- Select a Category");
+        System.out.println("\t[s] <-- Save your Contacts");
+        System.out.println("\t[q] <-- Quit");
+    }
+
     //Inspiration taken from TellerApp
     //EFFECTS: displays main menu and options to user
     public void runDisplay() {
@@ -87,11 +112,7 @@ public class Display {
         String input = null;
 
         while (continueRunning) {
-            System.out.println("Please select an option: ");
-            System.out.println("\t[c] <-- Create a Contact");
-            System.out.println("\t[p] <-- Select a Category");
-            System.out.println("\t[s] <-- Save your Contacts");
-            System.out.println("\t[q] <-- Quit");
+            menuOptions();
             input = scanner.nextLine();
             input.toLowerCase();
 

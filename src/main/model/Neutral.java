@@ -9,6 +9,11 @@ public class Neutral extends Category {
         contactsList = new LinkedList<Contact>();
     }
 
+    @Override
+    public double totalFinances() {
+        return 0.00;
+    }
+
     //Methods are inherited
 
 }

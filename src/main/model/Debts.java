@@ -12,6 +12,15 @@ public class Debts extends Category {
         contactsList = new LinkedList<Contact>();
     }
 
+    @Override
+    public double totalFinances() {
+        double totalAmount = 0.00;
+        for (Contact c : contactsList) {
+            totalAmount -= c.getTransAmount();
+        }
+        return totalAmount;
+    }
+
     //Methods are inherited
 
 }

@@ -50,4 +50,6 @@ public abstract class Category {
             return false;
         }
     }
+
+    public abstract double totalFinances();
 }
