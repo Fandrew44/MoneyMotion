@@ -1,6 +1,5 @@
 package model;
 
-import java.time.LocalDate;
 import java.util.LinkedList;
 
 //Represents all the Contacts that the user is indebted to

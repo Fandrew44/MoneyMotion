@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" styleClass="container" stylesheets="@MainStylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ControllerQuit">
+   <children>
+      <Label layoutX="135.0" layoutY="229.0" text="Would you like to save your work before quitting?" />
+      <JFXButton fx:id="yes" buttonType="RAISED" layoutX="207.0" layoutY="342.0" onAction="#saveContacts" style="-fx-background-color: #ffffff;" text="Yes" />
+      <JFXButton fx:id="no" buttonType="RAISED" layoutX="339.0" layoutY="342.0" onAction="#doNotSaveContacts" style="-fx-background-color: #ffffff;" text="No" />
+   </children>
+</AnchorPane>

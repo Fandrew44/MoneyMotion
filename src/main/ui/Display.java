@@ -166,8 +166,8 @@ public class Display {
         String description = scanner.nextLine();
         System.out.println("How much money was involved in the transaction?");
         double transAmount = scanner.nextDouble();
-        System.out.println("Did you borrow this money from the Contact or loan it to them?");
-        System.out.println("\t[d] <-- Borrow (Debt)");
+        System.out.println("Debt or loan? (from your perspective)");
+        System.out.println("\t[d] <-- Debt");
         System.out.println("\t[l] <-- Loaned");
         scanner.nextLine();
         String transType = scanner.nextLine();
@@ -272,38 +272,25 @@ public class Display {
     public void displayContactsDebts() {
         LinkedList<Contact> debtsList = debts.getContactsList();
         String contactNames = "";
-        int index = 1;
 
-        if (debtsList.isEmpty()) {
-            System.out.println("There are no Contacts in this category.");
-        } else {
-            for (Contact c : debtsList) {
-                String name = c.getName();
-                contactNames += index +  ". " + name + " - $" + c.getTransAmount() + "\n";
-                index++;
-            }
-            System.out.println(contactNames);
+        for (Contact c : debtsList) {
+            String name = c.getName();
+            contactNames += name + " - " + c.toString() + "\n";
         }
+        System.out.println(contactNames);
         returnToCategories();
-
     }
 
     //EFFECTS: displays all the contacts in the loans category
     public void displayContactsLoans() {
         LinkedList<Contact> loansList = loans.getContactsList();
         String contactNames = "";
-        int index = 1;
 
-        if (loansList.isEmpty()) {
-            System.out.println("There are no Contacts in this category.");
-        } else {
-            for (Contact c : loansList) {
-                String name = c.getName();
-                contactNames += index +  ". " + name + " - $" + c.getTransAmount() + "\n";
-                index++;
-            }
-            System.out.println(contactNames);
+        for (Contact c : loansList) {
+            String name = c.getName();
+            contactNames += name + " - " + c.toString() + "\n";
         }
+        System.out.println(contactNames);
         returnToCategories();
     }
 
@@ -311,19 +298,12 @@ public class Display {
     public void displayContactsNeutral() {
         LinkedList<Contact> neutralList = neutral.getContactsList();
         String contactNames = "";
-        int index = 1;
 
-        if (neutralList.isEmpty()) {
-            System.out.println("There are no Contacts in this category.");
-        } else {
-            for (Contact c : neutralList) {
-                String name = c.getName();
-                contactNames += index +  ". " + name + "\n";
-                index++;
-            }
-            System.out.println(contactNames);
+        for (Contact c : neutralList) {
+            String name = c.getName();
+            contactNames += name + "\n";
         }
-
+        System.out.println(contactNames);
         returnToCategories();
     }
 
@@ -543,7 +523,7 @@ public class Display {
         String transType = c.getTransType();
         System.out.println("Name: " + c.getName());
         System.out.println("Description: " + c.getDescription());
-        System.out.println("Transaction Amount: $" + c.getTransAmount());
+        System.out.println("Transaction Amount: " + c.getTransAmount());
         System.out.println("Date the Transaction occurred: " + year + "/" + month + "/" + day);
         if (transType.equals("d")) {
             System.out.println("Transaction Type: Debt");

@@ -1,9 +1,11 @@
 package model;
 
+import javafx.scene.control.Button;
 import persistence.ContactsReader;
 import persistence.SaveableData;
 
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.Locale;
@@ -14,17 +16,27 @@ public class Contact implements SaveableData {
     private String name;
     private String description;
     private double transAmount;
+    private String transAmountString;
     private LocalDate date;
     private String transType;
     private String status;
+    private DecimalFormat df;
+    private Button button;
 
     public Contact(String n, String description, double transAmount, int year, int month, int day, String transType) {
+        df = new DecimalFormat("#.##");
         this.name = n;
         this.description = description;
         this.transAmount = transAmount;
+        this.transAmountString = df.format(transAmount);
         date = LocalDate.of(year, month, day);
         this.transType = transType;
         status = " ";
+        button = new Button("Contact Details");
+    }
+
+    public Button getButton() {
+        return button;
     }
 
     public String getName() {
@@ -63,6 +75,10 @@ public class Contact implements SaveableData {
 
     public String getStatus() {
         return status;
+    }
+
+    public void setButton(Button button) {
+        this.button = button;
     }
 
     public void setName(String name) {
@@ -148,8 +164,6 @@ public class Contact implements SaveableData {
 //                transType = "l";
 //                break;
 //        }
-
-
 
 
 }
