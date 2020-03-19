@@ -1,5 +1,4 @@
 adrian,buff kid,50.0,2020,2,26,d
-f,g,30.0,2020,3,1,d
 Juan,cool,6000000.0,2020,3,8,d
 Andreas,a foolhardy but courageous lad,46.75,2020,1,27,l
 Sandon,a good badminton player,45.0,2020,1,25,l

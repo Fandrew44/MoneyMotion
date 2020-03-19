@@ -24,46 +24,14 @@ import static javafx.application.Application.launch;
 // Begins the program when run
 public class Main extends Application implements Initializable {
 
-    private Category neutral;
-    private Category debts;
-    private Category loans;
     private static Stage mainStage;
     private static Stage popupWindow;
-    private static File saveFILE = new File("./data/SavedContacts.txt");
 
 
     //TODO: This method loads saved data
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        neutral = new Neutral();
-        debts = new Debts();
-        loans = new Loans();
-        loadContacts(saveFILE);
-    }
-
-    public void loadContacts(File file) {
-        ArrayList<Contact> contacts = null;
-        try {
-            contacts = ContactsReader.readContacts(saveFILE);
-        } catch (FileNotFoundException e) {
-            System.out.println("That file does not exist!");
-            System.exit(0);
-        }
-
-        for (Contact c : contacts) {
-            putIntoCategory(c);
-        }
-    }
-
-    public void putIntoCategory(Contact c) {
-        String type = c.getTransType();
-        if (type.equals("d")) {
-            debts.addContact(c);
-        } else if (type.equals("l")) {
-            loans.addContact(c);
-        } else {
-            neutral.addContact(c);
-        }
+        DataState.init();
     }
 
     @Override
@@ -75,8 +43,8 @@ public class Main extends Application implements Initializable {
         Parent mainMenu = FXMLLoader.load(getClass().getResource("StartUI.fxml"));
         mainStage.setTitle("MoneyMotion");
         mainStage.setScene(new Scene(mainMenu, 600, 600));
+        DataState.init();
         mainStage.show();
-
 
     }
 

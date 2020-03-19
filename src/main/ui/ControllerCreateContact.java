@@ -4,10 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import model.Category;
+import model.Contact;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ControllerCreateContact implements Initializable {
@@ -26,12 +30,31 @@ public class ControllerCreateContact implements Initializable {
     @FXML
     private TextField transactionType;
 
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private TextField descriptionField;
+
+    @FXML
+    private TextField transAmountField;
+
+    @FXML
+    private DatePicker transDateField;
+
+    private Category debts;
+    private Category loans;
+    private Category neutral;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sceneManager = new SceneManager();
         sceneManager.hoverEffect(menu);
         sceneManager.hoverEffect(createContact);
+        debts = DataState.getState().getDebts();
+        loans = DataState.getState().getLoans();
+        neutral = DataState.getState().getNeutral();
     }
 
     @FXML
@@ -44,8 +67,24 @@ public class ControllerCreateContact implements Initializable {
     //MODIFIES: this
     //EFFECTS: Creates a new contact based on user inputs and adds it to the appropriate category
     public void createContact(ActionEvent actionEvent) throws IOException {
-        //TODO: IMPLEMENT CREATION OF CONTACT BASED ON INPUTTED VALUES
-        //TODO: IMPLEMENT AUTOMATICALLY PLACING CONTACT INTO APPROPRIATE CATEGORY
+        String name = nameField.getText();
+        String description = descriptionField.getText();
+        double transAmount = Double.parseDouble(transAmountField.getText());
+        LocalDate transDate = transDateField.getValue();
+        int year = transDate.getYear();
+        int month = transDate.getMonthValue();
+        int day = transDate.getDayOfMonth();
+        String transType = transactionType.getText();
+        String transTypeField = "";
+        if (transType.equals("Debt")) {
+            transTypeField = "d";
+        } else {
+            transTypeField = "l";
+        }
+
+        Contact newContact = new Contact(name, description, transAmount, year, month, day, transTypeField);
+        DataState.putIntoCategory(newContact);
+
         sceneManager.updateScene(sceneManager.menuScene, actionEvent);
     }
 

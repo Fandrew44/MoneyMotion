@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -33,6 +34,9 @@ public class ControllerMenu implements Initializable {
     @FXML
     protected Button quit;
 
+    @FXML
+    private Label totalFinances;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sceneManager = new SceneManager();
@@ -40,6 +44,7 @@ public class ControllerMenu implements Initializable {
         sceneManager.hoverEffect(categories);
         sceneManager.hoverEffect(saveContacts);
         sceneManager.hoverEffect(quit);
+        totalFinances.setText("Current Financial Situation: " + DataState.printFinancialSituation());
     }
 
     @FXML

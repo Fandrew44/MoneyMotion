@@ -3,14 +3,19 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="600.0" styleClass="container" stylesheets="@MainStylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ControllerMenu">
    <children>
-      <Label layoutX="217.0" layoutY="119.0" text="[Total Financial Situation]" />
-      <Label layoutY="24.0" text="See if it's possible to make buttons look better AND the same size (for contact and categories" />
-      <JFXButton fx:id="createContact" buttonType="RAISED" layoutX="38.0" layoutY="238.0" onAction="#createNewContact" style="-fx-background-color: #ffffff;" text="Create a New Contact [Add Icon]" />
-      <JFXButton fx:id="categories" buttonType="RAISED" layoutX="384.0" layoutY="238.0" onAction="#categories" style="-fx-background-color: #ffffff;" text="Categories [Add Icon]" />
+      <Label fx:id="totalFinances" layoutX="120.0" layoutY="147.0" text="[Total Financial Situation]">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <JFXButton fx:id="createContact" buttonType="RAISED" layoutX="37.0" layoutY="285.0" onAction="#createNewContact" style="-fx-background-color: #ffffff;" text="Create a New Contact [Add Icon]" />
+      <JFXButton fx:id="categories" buttonType="RAISED" layoutX="387.0" layoutY="285.0" onAction="#categories" style="-fx-background-color: #ffffff;" text="Categories [Add Icon]" />
       <JFXButton fx:id="saveContacts" buttonType="RAISED" layoutX="253.0" layoutY="452.0" onAction="#saveContacts" style="-fx-background-color: #ffffff;" text="Save Contacts" />
       <JFXButton fx:id="quit" buttonType="RAISED" layoutX="285.0" layoutY="527.0" onAction="#quit" style="-fx-background-color: #ffffff;" text="Quit" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4565654" height="94.0" layoutX="111.0" layoutY="121.0" stroke="BLACK" strokeType="INSIDE" width="408.0" />
    </children>
 </AnchorPane>

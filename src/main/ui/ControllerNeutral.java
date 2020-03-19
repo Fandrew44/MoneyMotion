@@ -10,11 +10,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.Category;
 import model.Contact;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class ControllerNeutral implements Initializable {
@@ -41,7 +43,7 @@ public class ControllerNeutral implements Initializable {
 
     //TODO: WHEN IMPLEMENTING, REPLACING THE "contactDetails" Field with the "debts" FIELDS
     @FXML
-    private ArrayList<Contact> contactDetails = new ArrayList<>();
+    private Category contactDetails;
 
     @FXML
     private Button menu;
@@ -66,20 +68,24 @@ public class ControllerNeutral implements Initializable {
         //dates.setCellValueFactory(new PropertyValueFactory<Contact, String>("date"));
         //contacts.setCellValueFactory(new PropertyValueFactory<Contact, Button>("Contact"));
 
-        //TODO: REMOVE THESE DURING PRODUCTION
-        //Creates contacts to visualize if things are working as intended
-        Contact c1 = new Contact("All", "cool guy", 56.55, 2020, 3, 13, "d");
-        Contact c2 = new Contact("Eric", "tall guy", 75.87, 2020, 1, 15, "d");
-        Contact c3 = new Contact("Fregg", "pokemon trainer", 45.47, 2020, 2, 17, "d");
-        Contact c4 = new Contact("Saints", "good cop", 30, 2020, 3, 5, "d");
+//        //TODO: REMOVE THESE DURING PRODUCTION
+//        //Creates contacts to visualize if things are working as intended
+//        Contact c1 = new Contact("All", "cool guy", 56.55, 2020, 3, 13, "d");
+//        Contact c2 = new Contact("Eric", "tall guy", 75.87, 2020, 1, 15, "d");
+//        Contact c3 = new Contact("Fregg", "pokemon trainer", 45.47, 2020, 2, 17, "d");
+//        Contact c4 = new Contact("Saints", "good cop", 30, 2020, 3, 5, "d");
 
-        //TODO: WHEN IMPLEMENTING, REPLACING THE "contactDetails" Field with the "debts" FIELDS
-        contactDetails.add(c1);
-        contactDetails.add(c2);
-        contactDetails.add(c3);
-        contactDetails.add(c4);
+//        //TODO: WHEN IMPLEMENTING, REPLACING THE "contactDetails" Field with the "debts" FIELDS
+//        contactDetails.add(c1);
+//        contactDetails.add(c2);
+//        contactDetails.add(c3);
+//        contactDetails.add(c4);
 
-        for (Contact c : contactDetails) {
+        contactDetails = DataState.getState().getNeutral();
+        LinkedList<Contact> neutralList = contactDetails.getContactsList();
+
+        for (Contact c : neutralList) {
+            dataList.add(c);
             Button b = c.getButton();
             b.setOnAction(event -> {
                 try {
@@ -90,7 +96,6 @@ public class ControllerNeutral implements Initializable {
             });
         }
 
-        dataList.addAll(c1, c2, c3, c4);
         //Wrap the ObservableList in a FilteredList (while initially displaying ALL the contacts)
         sceneManager.createSearchBar(dataList, filteredField, tableView);
     }

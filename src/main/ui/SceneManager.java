@@ -40,13 +40,9 @@ public class SceneManager {
     protected final String loansScene = "LoansUI.fxml";
     protected final String neutralScene = "NeutralUI.fxml";
 
-    private Category neutral;
-    private Category debts;
-    private Category loans;
-
     @FXML
     //MODIFIES: this
-    //EFFECTS: Changes the scene to file and accepts the data from the previous scene
+    //EFFECTS: Changes the scene to the scene specified by file and accepts data about contacts from caller
     public void updateScene(String file, ActionEvent actionEvent) throws IOException {
         Parent menuParent = FXMLLoader.load(getClass().getResource(file));
         Scene scene = new Scene(menuParent);
@@ -56,6 +52,7 @@ public class SceneManager {
         scene.getStylesheets().add(styleSheet);
         window.setScene(scene);
         window.show();
+
     }
 
     //EFFECTS: exits the program

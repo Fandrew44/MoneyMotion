@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -27,8 +28,8 @@ public class ControllerQuit implements Initializable {
 
     @FXML
     //EFFECTS: Saves the contacts to file and exits the program
-    public void saveContacts() {
-        //TODO: IMPLEMENT SAVING THE CONTACTS
+    public void saveContacts() throws FileNotFoundException {
+        DataState.saveContacts();
         sceneManager.quitProgram();
     }
 

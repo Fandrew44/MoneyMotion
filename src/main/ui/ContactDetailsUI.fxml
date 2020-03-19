@@ -3,6 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -40,7 +42,7 @@
                   <Font name="Candara Bold" size="24.0" />
                </font></Label>
             <Label fx:id="nameLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="244.0" layoutY="189.0" prefHeight="21.0" prefWidth="90.0" text="[Name Goes Here]" />
-            <Label fx:id="descriptionLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="227.0" layoutY="255.0" prefHeight="21.0" prefWidth="134.0" text="[Brief Description Goes Here]" />
+            <Label fx:id="descriptionLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="129.0" layoutY="255.0" prefHeight="21.0" prefWidth="350.0" text="[Brief Description Goes Here]" />
             <Label fx:id="transAmountLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="321.0" prefHeight="21.0" prefWidth="152.0" text="[Transaction Amount Goes Here]" AnchorPane.bottomAnchor="258.0" AnchorPane.leftAnchor="218.0" AnchorPane.rightAnchor="230.0" />
             <Label fx:id="transTypeLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="239.0" layoutY="378.0" prefHeight="21.0" prefWidth="110.0" text="[Transaction Type Goes Here]" />
             <Label fx:id="transDateLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="227.0" layoutY="445.0" prefHeight="21.0" prefWidth="134.0" text="[Transaction Date Goes Here]" />
@@ -48,6 +50,14 @@
             <TextField fx:id="newTransAmount" layoutX="446.0" layoutY="316.0" prefHeight="31.0" prefWidth="90.0" promptText="\$" />
             <FontAwesomeIconView glyphName="USER" layoutX="265.0" layoutY="142.0" size="70" />
             <Separator layoutX="194.0" layoutY="465.0" prefWidth="200.0" />
+            <MenuButton layoutX="415.0" layoutY="363.0" mnemonicParsing="false" text="Transaction Type">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#choseDebt" text="Debt - You borrowed the transaction amount from this Contact" />
+                  <MenuItem mnemonicParsing="false" onAction="#choseLoan" text="Loan - You lent the transaction amount to this Contact" />
+                  <MenuItem mnemonicParsing="false" onAction="#choseNeutral" text="Neutral - Update Amount is 0" />
+               </items>
+            </MenuButton>
+            <TextField fx:id="transTypeTextField" layoutX="402.0" layoutY="401.0" prefHeight="31.0" prefWidth="186.0" promptText="Valid Type Required" />
          </children>
       </AnchorPane>
    </children>
