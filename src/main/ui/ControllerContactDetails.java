@@ -26,6 +26,10 @@ public class ControllerContactDetails implements Initializable {
 
     private Contact contact;
 
+    private String debt = "Debt";
+    private String loan = "Loan";
+    private String neutral = "Neutral";
+
     @FXML
     private SceneManager sceneManager = new SceneManager();
 
@@ -141,39 +145,19 @@ public class ControllerContactDetails implements Initializable {
     //EFFECTS: Changes the contact's transamount to newTransAmount
     public void updateTransAmount() {
         String transType = transTypeTextField.getText();
-        String debt = "Debt";
-        String loan = "Loan";
-        String neutral = "Neutral";
         try {
             Double updatedTransAmount = Double.parseDouble(newTransAmount.getText());
             if (debt.equals(transType) || loan.equals(transType)) {
                 if (updatedTransAmount == 0) {
                     transTypeTextField.setText("Error: zero amount");
                 } else {
-                    transAmount = "$" + newTransAmount.getText();
-                    transAmountLabel.setText(transAmount);
-                    if (debt.equals(transType)) {
-                        transTypeLabel.setText("Debt");
-                        contact.setTransType("d");
-                    } else {
-                        transTypeLabel.setText("Loan");
-                        contact.setTransType("l");
-                    }
-                    contact.setTransAmount(updatedTransAmount);
-                    setReturnLabel();
-                    centerText();
+                    setLabel(transType, updatedTransAmount);
                 }
             } else if (neutral.equals(transType)) {
                 if (updatedTransAmount != 0) {
                     transTypeTextField.setText("Error: non-zero amount");
                 } else {
-                    transAmount = "$" + newTransAmount.getText();
-                    transAmountLabel.setText(transAmount);
-                    transTypeLabel.setText("Neutral");
-                    contact.setTransType("n");
-                    contact.setTransAmount(updatedTransAmount);
-                    centerText();
-                    setReturnLabel();
+                    setLabelNeutral(updatedTransAmount);
                 }
             } else {
                 transTypeTextField.setText("Valid Type Required");
@@ -181,6 +165,35 @@ public class ControllerContactDetails implements Initializable {
         } catch (Exception e) {
             newTransAmount.setText("Valid Amount Required");
         }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: Updates the text label depending on contact's transtype
+    private void setLabel(String transType, double updatedTransAmount) {
+        transAmount = "$" + newTransAmount.getText();
+        transAmountLabel.setText(transAmount);
+        if (debt.equals(transType)) {
+            transTypeLabel.setText("Debt");
+            contact.setTransType("d");
+        } else {
+            transTypeLabel.setText("Loan");
+            contact.setTransType("l");
+        }
+        contact.setTransAmount(updatedTransAmount);
+        setReturnLabel();
+        centerText();
+    }
+
+    //MODIFIES: this
+    //EFFECTS: Updates the text label for a neutral contact
+    private void setLabelNeutral(double updatedTransAmount) {
+        transAmount = "$" + newTransAmount.getText();
+        transAmountLabel.setText(transAmount);
+        transTypeLabel.setText("Neutral");
+        contact.setTransType("n");
+        contact.setTransAmount(updatedTransAmount);
+        centerText();
+        setReturnLabel();
     }
 
     @FXML
