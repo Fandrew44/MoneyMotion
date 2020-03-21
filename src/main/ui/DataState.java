@@ -10,6 +10,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+//A singleton class representing all the fields for the program
 public class DataState {
 
     private static Category debts;
@@ -20,14 +21,19 @@ public class DataState {
 
     private static DataState instance;
 
+    //MODIFIES: this
+    //EFFECTS: Initializes the instance
     public static void init() {
         instance = new DataState();
     }
 
+    //EFFECTS: Returns the instance
     public static DataState getState() {
         return instance;
     }
 
+    //MODIFIES: this
+    //EFFECTS: Initializes the fields
     private DataState() {
         debts = new Debts();
         loans = new Loans();
@@ -35,24 +41,28 @@ public class DataState {
         loadContacts(saveFILE);
     }
 
+    //EFFECTS: Returns the debts
     public Category getDebts() {
         return debts;
     }
 
+    //EFFECTS: Returns the loans
     public Category getLoans() {
         return loans;
     }
 
+    //EFFECT: Returns the neutral
     public Category getNeutral() {
         return neutral;
     }
 
+    //Inspiration taken from the TellerApp
+    //EFFECTS: Loads contacts from file
     public void loadContacts(File file) {
         ArrayList<Contact> contacts = null;
         try {
             contacts = ContactsReader.readContacts(saveFILE);
         } catch (FileNotFoundException e) {
-            System.out.println("That file does not exist!");
             System.exit(0);
         }
 
@@ -61,6 +71,9 @@ public class DataState {
         }
     }
 
+
+    //MODIFIES: this
+    //EFFECTS: Places c into the appropriate category
     public static void putIntoCategory(Contact c) {
         Double transAmount = c.getTransAmount();
         String type = c.getTransType();
@@ -96,6 +109,7 @@ public class DataState {
         cw.close();
     }
 
+    //EFFECTS: Returns the total financial situation of the user
     public static String printFinancialSituation() {
         String totalFinancesMessage = "";
         double totalFinances = loans.totalFinances() + debts.totalFinances();

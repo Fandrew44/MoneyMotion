@@ -20,7 +20,7 @@ import model.Contact;
 import java.io.IOException;
 import java.net.URL;
 
-//Changes the scene of the stage
+//Manages general operations applicable to most, if not all, scenes
 public class SceneManager {
 
     //Inspiration taken from StackOverflow
@@ -60,7 +60,7 @@ public class SceneManager {
         Platform.exit();
     }
 
-    //TODO: THIS IS LOWKEY LOW COHESION :(
+
     @FXML
     //EFFECTS: Adds a hover effect to the button
     public void hoverEffect(Button b) {
@@ -69,7 +69,6 @@ public class SceneManager {
         b.setOnMouseExited(e -> b.setStyle(IDLE_BUTTON));
     }
 
-    //TODO: LOWKEY BAD COHESION AGAIN RIP BUT GOTTA GET RID OF DUPLICATED CODE, DAMN
     @FXML
     //MODIFIES: this
     //EFFECTS: Creates a search bar for the table in the scene
@@ -107,7 +106,6 @@ public class SceneManager {
         tableView.setItems(sortedData);
     }
 
-    //TODO: HOLY THIS COHESION IS LOW AF
     @FXML
     //MODIFIES: this
     //EFFECTS: Changes the scene to contact details scene with contact c's details
@@ -125,8 +123,6 @@ public class SceneManager {
         window.show();
     }
 
-    //TODO: OOF BAD COHESION AGAIN NOOOO
-    //TODO: WHEN IMPLEMENTING, PASS IN CONTACT NAME TO CUSTOMIZE THE CONTACT DETAILS SCENE
     @FXML
     //MODIFIES: this
     //EFFECTS: Assigns an action to the button

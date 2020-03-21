@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -47,7 +48,7 @@
             <Label fx:id="transTypeLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="239.0" layoutY="378.0" prefHeight="21.0" prefWidth="110.0" text="[Transaction Type Goes Here]" />
             <Label fx:id="transDateLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="227.0" layoutY="445.0" prefHeight="21.0" prefWidth="134.0" text="[Transaction Date Goes Here]" />
             <JFXButton fx:id="updateTransAmount" buttonType="RAISED" layoutX="427.0" layoutY="278.0" onAction="#updateTransAmount" style="-fx-background-color: #ffffff;" text="Update Amount" />
-            <TextField fx:id="newTransAmount" layoutX="446.0" layoutY="316.0" prefHeight="31.0" prefWidth="90.0" promptText="\$" />
+            <TextField fx:id="newTransAmount" layoutX="402.0" layoutY="316.0" prefHeight="31.0" prefWidth="186.0" promptText="\$" />
             <FontAwesomeIconView glyphName="USER" layoutX="265.0" layoutY="142.0" size="70" />
             <Separator layoutX="194.0" layoutY="465.0" prefWidth="200.0" />
             <MenuButton layoutX="415.0" layoutY="363.0" mnemonicParsing="false" text="Transaction Type">
@@ -60,5 +61,6 @@
             <TextField fx:id="transTypeTextField" layoutX="402.0" layoutY="401.0" prefHeight="31.0" prefWidth="186.0" promptText="Valid Type Required" />
          </children>
       </AnchorPane>
+      <ImageView fx:id="logo" fitHeight="526.0" fitWidth="563.0" layoutX="-151.0" layoutY="-200.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="284.0" AnchorPane.leftAnchor="-161.0" AnchorPane.rightAnchor="198.0" AnchorPane.topAnchor="-210.0" />
    </children>
 </AnchorPane>

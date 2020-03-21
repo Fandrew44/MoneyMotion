@@ -6,20 +6,27 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.Category;
 import model.Contact;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
-import java.io.IOException;
+import javax.annotation.Resource;
+import javax.print.attribute.standard.Media;
+import javax.sound.sampled.*;
+import java.io.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+//Controller for the Create Contact scene
 public class ControllerCreateContact implements Initializable {
 
     private SceneManager sceneManager;
 
-    //TODO: IMPLEMENT FIELDS FOR TEXT BOXES
-    //TODO: IMPLEMENT A FIELD FOR DATE
+    private File audioFile = new File("./data/ding.wav");
 
     @FXML
     private Button menu;
@@ -42,6 +49,9 @@ public class ControllerCreateContact implements Initializable {
     @FXML
     private DatePicker transDateField;
 
+    @FXML
+    private ImageView logo;
+
     private Category debts;
     private Category loans;
     private Category neutral;
@@ -55,6 +65,14 @@ public class ControllerCreateContact implements Initializable {
         debts = DataState.getState().getDebts();
         loans = DataState.getState().getLoans();
         neutral = DataState.getState().getNeutral();
+
+        try {
+            FileInputStream imageInput = new FileInputStream("./data/Logo.png");
+            Image image = new Image(imageInput);
+            logo.setImage(image);
+        } catch (FileNotFoundException e) {
+            sceneManager.quitProgram();
+        }
     }
 
     @FXML
@@ -84,23 +102,32 @@ public class ControllerCreateContact implements Initializable {
 
         Contact newContact = new Contact(name, description, transAmount, year, month, day, transTypeField);
         DataState.putIntoCategory(newContact);
+        playDing();
 
         sceneManager.updateScene(sceneManager.menuScene, actionEvent);
+    }
+
+    //EFFECTS: Plays the "ding" sound effect
+    private void playDing() {
+        try {
+            Clip audioClip = AudioSystem.getClip();
+            audioClip.open(AudioSystem.getAudioInputStream(audioFile));
+            audioClip.start();
+        } catch (Exception e) {
+            sceneManager.quitProgram();
+        }
+
     }
 
     @FXML
     //EFFECTS: Sets Contact's transaction type to debt if user chose debt
     public void choseDebt() {
         transactionType.setText("Debt");
-        //TODO: IMPLEMENT THIS WITH THE CONTACT CONSTRUCTOR SOMEHOW?????????
-        //TODO: HELPER METHOD THAT RETURNS STRING????
     }
 
     @FXML
     //EFFECTS: Sets Contact's transaction type to loan if user chose loan
     public void choseLoan() {
         transactionType.setText("Loan");
-        //TODO: IMPLEMENT THIS WITH THE CONTACT CONSTRUCTOR SOMEHOW????????
-        //TODO: HELPER METHOD THAT RETURNS STRING????
     }
 }

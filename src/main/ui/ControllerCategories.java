@@ -6,7 +6,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,6 +35,9 @@ public class ControllerCategories implements Initializable {
     @FXML
     private Label blankLabel;
 
+    @FXML
+    private ImageView logo;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sceneManager = new SceneManager();
@@ -38,6 +45,14 @@ public class ControllerCategories implements Initializable {
         sceneManager.hoverEffect(loans);
         sceneManager.hoverEffect(neutral);
         sceneManager.hoverEffect(menu);
+
+        try {
+            FileInputStream imageInput = new FileInputStream("./data/Logo.png");
+            Image image = new Image(imageInput);
+            logo.setImage(image);
+        } catch (FileNotFoundException e) {
+            sceneManager.quitProgram();
+        }
     }
 
     @FXML

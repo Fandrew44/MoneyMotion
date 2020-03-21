@@ -50,7 +50,6 @@ public class ControllerDebts implements Initializable {
     @FXML
     private TableColumn<Contact, String> contacts;
 
-    //TODO: WHEN IMPLEMENTING, REPLACING THE "contactDetails" Field with the "debts" FIELDS
     @FXML
     private Category contactDetails;
 
@@ -60,7 +59,6 @@ public class ControllerDebts implements Initializable {
     @FXML
     private Button category;
 
-    //TODO: INSPIRATION TAKEN FROM YOUTUBE VIDEO: https://www.youtube.com/watch?v=FeTrcNBVWtg
     //Observable list to store data
     private final ObservableList<Contact> dataList = FXCollections.observableArrayList();
 
@@ -75,21 +73,6 @@ public class ControllerDebts implements Initializable {
         names.setCellValueFactory(new PropertyValueFactory<Contact, String>("name"));
         transAmounts.setCellValueFactory(new PropertyValueFactory<Contact, String>("transAmount"));
         contacts.setCellValueFactory(new PropertyValueFactory<Contact, String>("button"));
-        //dates.setCellValueFactory(new PropertyValueFactory<Contact, String>("date"));
-        //contacts.setCellValueFactory(new PropertyValueFactory<Contact, Button>("Contact"));
-
-//        //TODO: REMOVE THESE DURING PRODUCTION
-//        //Creates contacts to visualize if things are working as intended
-//        Contact c1 = new Contact("Joe", "cool guy", 56.55, 2020, 3, 13, "d");
-//        Contact c2 = new Contact("Eric", "tall guy", 75.87, 2020, 1, 15, "d");
-//        Contact c3 = new Contact("Carmelo", "pokemon trainer", 45.47, 2020, 2, 17, "d");
-//        Contact c4 = new Contact("Cop", "good cop", 30, 2020, 3, 5, "d");
-
-//        //TODO: WHEN IMPLEMENTING, REPLACING THE "contactDetails" Field with the "debts" FIELDS
-//        contactDetails.add(c1);
-//        contactDetails.add(c2);
-//        contactDetails.add(c3);
-//        contactDetails.add(c4);
 
         contactDetails = DataState.getState().getDebts();
         LinkedList<Contact> debtsList = contactDetails.getContactsList();

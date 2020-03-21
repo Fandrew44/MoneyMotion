@@ -8,10 +8,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,6 +41,9 @@ public class ControllerMenu implements Initializable {
     @FXML
     private Label totalFinances;
 
+    @FXML
+    private ImageView logo;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sceneManager = new SceneManager();
@@ -45,6 +52,14 @@ public class ControllerMenu implements Initializable {
         sceneManager.hoverEffect(saveContacts);
         sceneManager.hoverEffect(quit);
         totalFinances.setText("Current Financial Situation: " + DataState.printFinancialSituation());
+
+        try {
+            FileInputStream imageInput = new FileInputStream("./data/Logo.png");
+            Image image = new Image(imageInput);
+            logo.setImage(image);
+        } catch (FileNotFoundException e) {
+            sceneManager.quitProgram();
+        }
     }
 
     @FXML
@@ -62,8 +77,7 @@ public class ControllerMenu implements Initializable {
     @FXML
     //EFFECTS: Writes all contacts and their properties to file
     public void saveContacts(ActionEvent actionEvent) throws IOException {
-        //TODO: IMPLEMENT SAVING THE CONTACTS
-        //TODO: IMPLEMENT A POP-UP WINDOW
+        DataState.saveContacts();
     }
 
     @FXML
@@ -71,9 +85,4 @@ public class ControllerMenu implements Initializable {
     public void quit(ActionEvent actionEvent) throws IOException {
         sceneManager.updateScene(sceneManager.quitScene, actionEvent);
     }
-
-    //TODO: EVERYTHING BELOW IS FOR TESTING PURPOSES ONLY!!!!
-//    public void testExitButton() {
-//        Platform.exit();
-//    }
 }

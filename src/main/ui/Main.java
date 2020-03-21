@@ -7,6 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.*;
@@ -25,10 +28,8 @@ import static javafx.application.Application.launch;
 public class Main extends Application implements Initializable {
 
     private static Stage mainStage;
-    private static Stage popupWindow;
 
 
-    //TODO: This method loads saved data
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         DataState.init();
@@ -36,13 +37,14 @@ public class Main extends Application implements Initializable {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        //Button button = new Button("Test Button");
-        //StackPane layout = new StackPane();
-        //layout.getChildren().add(button);
         mainStage = primaryStage;
         Parent mainMenu = FXMLLoader.load(getClass().getResource("StartUI.fxml"));
         mainStage.setTitle("MoneyMotion");
-        mainStage.setScene(new Scene(mainMenu, 600, 600));
+        Scene scene = new Scene(mainMenu, 600, 600);
+        URL styleSheetFile = getClass().getResource("MainLogoStylesheet.css");
+        String styleSheet = String.valueOf(styleSheetFile);
+        scene.getStylesheets().add(styleSheet);
+        mainStage.setScene(scene);
         DataState.init();
         mainStage.show();
 
@@ -52,18 +54,4 @@ public class Main extends Application implements Initializable {
         launch(args);
     }
 
-//    @FXML
-//    public static void createPopupWindow(String file) throws IOException {
-//        Parent popupScene = FXMLLoader.load(Main.class.getResource(file));
-//        popupWindow = new Stage();
-//        popupWindow.initModality(Modality.APPLICATION_MODAL);
-//        popupWindow.initOwner(mainStage);
-//        popupWindow.setScene(new Scene(popupScene));
-//        popupWindow.showAndWait();
-//    }
-//
-//    @FXML
-//    public static void closePopupWindow() {
-//        popupWindow.close();
-//    }
 }

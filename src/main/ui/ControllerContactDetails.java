@@ -7,20 +7,22 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.TextAlignment;
 import model.Category;
 import model.Contact;
 
 import javax.swing.*;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+//Controller for the Contact Details scene
 public class ControllerContactDetails implements Initializable {
-
-
-    //TODO: IMPLEMENT THE DEBTS, LOANS, AND NEUTRAL LIST
 
     private Contact contact;
 
@@ -57,6 +59,9 @@ public class ControllerContactDetails implements Initializable {
     @FXML
     private TextField transTypeTextField;
 
+    @FXML
+    private ImageView logo;
+
     private String transAmount;
 
     @Override
@@ -64,6 +69,14 @@ public class ControllerContactDetails implements Initializable {
         sceneManager.hoverEffect(returnButton);
         sceneManager.hoverEffect(deleteContact);
         sceneManager.hoverEffect(updateTransAmount);
+
+        try {
+            FileInputStream imageInput = new FileInputStream("./data/Logo.png");
+            Image image = new Image(imageInput);
+            logo.setImage(image);
+        } catch (FileNotFoundException e) {
+            sceneManager.quitProgram();
+        }
     }
 
     //MODIFIES: this
@@ -86,7 +99,7 @@ public class ControllerContactDetails implements Initializable {
         descriptionLabel.setText(contact.getDescription());
         transAmountLabel.setText(transAmount);
         transTypeLabel.setText(transType);
-        transDateLabel.setText(month +  "/" + day + "/" + year);
+        transDateLabel.setText(month + "/" + day + "/" + year);
         returnButton.setText("Return to " + transType + "s");
         centerText();
     }
@@ -116,7 +129,6 @@ public class ControllerContactDetails implements Initializable {
     }
 
     @FXML
-    //TODO: IMPLEMENT THIS
     //MODIFIES: this
     //EFFECTS: Removes the contact from their corresponding category
     public void deleteContact(ActionEvent actionEvent) throws IOException {
@@ -132,14 +144,42 @@ public class ControllerContactDetails implements Initializable {
         String debt = "Debt";
         String loan = "Loan";
         String neutral = "Neutral";
-        if (debt.equals(transType) || loan.equals(transType) || neutral.equals(transType)) {
-            transAmount = "$" + newTransAmount.getText();
-            transAmountLabel.setText(transAmount);
+        try {
             Double updatedTransAmount = Double.parseDouble(newTransAmount.getText());
-            contact.setTransAmount(updatedTransAmount);
-            centerText();
-        } else {
-            transTypeTextField.setText("Valid Type Required");
+            if (debt.equals(transType) || loan.equals(transType)) {
+                if (updatedTransAmount == 0) {
+                    transTypeTextField.setText("Error: zero amount");
+                } else {
+                    transAmount = "$" + newTransAmount.getText();
+                    transAmountLabel.setText(transAmount);
+                    if (debt.equals(transType)) {
+                        transTypeLabel.setText("Debt");
+                        contact.setTransType("d");
+                    } else {
+                        transTypeLabel.setText("Loan");
+                        contact.setTransType("l");
+                    }
+                    contact.setTransAmount(updatedTransAmount);
+                    setReturnLabel();
+                    centerText();
+                }
+            } else if (neutral.equals(transType)) {
+                if (updatedTransAmount != 0) {
+                    transTypeTextField.setText("Error: non-zero amount");
+                } else {
+                    transAmount = "$" + newTransAmount.getText();
+                    transAmountLabel.setText(transAmount);
+                    transTypeLabel.setText("Neutral");
+                    contact.setTransType("n");
+                    contact.setTransAmount(updatedTransAmount);
+                    centerText();
+                    setReturnLabel();
+                }
+            } else {
+                transTypeTextField.setText("Valid Type Required");
+            }
+        } catch (Exception e) {
+            newTransAmount.setText("Valid Amount Required");
         }
     }
 
@@ -148,17 +188,19 @@ public class ControllerContactDetails implements Initializable {
     //EFFECTS: Changes the contact's transType to "d" after choosing Debt from the drop-down menu
     //         and moves them into the Debts Category
     public void choseDebt() {
-        transTypeTextField.setText("Debt");
-        contact.setTransType("d");
-        removeContact();
-        DataState.putIntoCategory(contact);
-        String transType = contact.getTransType();
-        if (transType.equals("d")) {
-            returnButton.setText("Return to Debts");
-        } else if (transType.equals("l")) {
-            returnButton.setText("Return to Loans");
-        } else {
-            returnButton.setText("Return to Neutral");
+        try {
+            Double transAmount = Double.parseDouble(newTransAmount.getText());
+
+            if (transAmount == 0) {
+                transTypeTextField.setText("Error: zero amount");
+            } else {
+                transTypeTextField.setText("Debt");
+                contact.setTransType("d");
+                removeContact();
+                DataState.putIntoCategory(contact);
+            }
+        } catch (Exception e) {
+            newTransAmount.setText("Valid Amount Required");
         }
     }
 
@@ -167,23 +209,19 @@ public class ControllerContactDetails implements Initializable {
     //EFFECTS: Changes the contact's transType to "l" after choosing L from the drop-down menu
     //         and moves them into the Loans Category
     public void choseLoan() {
-        Double transAmount = Double.parseDouble(newTransAmount.getText());
+        try {
+            Double transAmount = Double.parseDouble(newTransAmount.getText());
 
-        if (transAmount == 0) {
-            transTypeTextField.setText("Error: non-zero amount");
-        } else {
-            transTypeTextField.setText("Loan");
-            contact.setTransType("l");
-            removeContact();
-            DataState.putIntoCategory(contact);
-            String transType = contact.getTransType();
-            if (transType.equals("d")) {
-                returnButton.setText("Return to Debts");
-            } else if (transType.equals("l")) {
-                returnButton.setText("Return to Loans");
+            if (transAmount == 0) {
+                transTypeTextField.setText("Error: zero amount");
             } else {
-                returnButton.setText("Return to Neutral");
+                transTypeTextField.setText("Loan");
+                contact.setTransType("l");
+                removeContact();
+                DataState.putIntoCategory(contact);
             }
+        } catch (Exception e) {
+            newTransAmount.setText("Valid Amount Required");
         }
 
     }
@@ -193,25 +231,34 @@ public class ControllerContactDetails implements Initializable {
     //EFFECTS: Changes the contact's transType to "n" after choosing Neutral from the drop-down menu
     //         and moves them into the Neutral Category
     public void choseNeutral() {
-        String transType = transTypeTextField.getText();
-        Double transAmount = Double.parseDouble(newTransAmount.getText());
+        try {
+            Double transAmount = Double.parseDouble(newTransAmount.getText());
 
-        if (transAmount == 0) {
-            transTypeTextField.setText("Neutral");
-            contact.setTransType("n");
-            removeContact();
-            DataState.putIntoCategory(contact);
-            if (transType.equals("d")) {
-                returnButton.setText("Return to Debts");
-            } else if (transType.equals("l")) {
-                returnButton.setText("Return to Loans");
+            if (transAmount == 0) {
+                transTypeTextField.setText("Neutral");
+                contact.setTransType("n");
+                removeContact();
+                DataState.putIntoCategory(contact);
             } else {
-                returnButton.setText("Return to Neutral");
+                transTypeTextField.setText("Error: non-zero amount");
             }
-        } else {
-            transTypeTextField.setText("Error: amount not 0");
+        } catch (Exception e) {
+            newTransAmount.setText("Valid Amount Required");
         }
 
+    }
+
+    //MODIFIES: this
+    //EFFECTS: Changes the text of the return button depending on which category was selected
+    public void setReturnLabel() {
+        String transType = contact.getTransType();
+        if (transType.equals("d")) {
+            returnButton.setText("Return to Debts");
+        } else if (transType.equals("l")) {
+            returnButton.setText("Return to Loans");
+        } else {
+            returnButton.setText("Return to Neutral");
+        }
     }
 
     //MODIFIES: this

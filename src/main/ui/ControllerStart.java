@@ -2,9 +2,20 @@ package ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,11 +31,22 @@ public class ControllerStart implements Initializable {
     @FXML
     private Button quit;
 
+    @FXML
+    private ImageView mainLogo;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sceneManager = new SceneManager();
         sceneManager.hoverEffect(start);
         sceneManager.hoverEffect(quit);
+
+        try {
+            FileInputStream imageInput = new FileInputStream("./data/MainLogo.png");
+            Image image = new Image(imageInput);
+            mainLogo.setImage(image);
+        } catch (FileNotFoundException e) {
+            sceneManager.quitProgram();
+        }
     }
 
     @FXML
@@ -38,29 +60,5 @@ public class ControllerStart implements Initializable {
     public void quit(ActionEvent actionEvent) throws IOException {
         sceneManager.updateScene(sceneManager.quitScene, actionEvent);
     }
-
-    //TODO: EVERYTHING BELOW IS FOR TESTING PURPOSES ONLY!!!!
-//    @FXML
-//    public void quitButton() {
-//        Platform.exit();
-//    }
-//
-//    @FXML
-//    public void quitButtonTwo() {
-//        Platform.exit();
-//    }
-//
-//    @FXML
-//    public void loadMenuScene(ActionEvent actionEvent) throws IOException {
-//        updateScene(menuFile, actionEvent);
-//
-////        Parent menuParent = FXMLLoader.load(getClass().getResource("MenuUI.fxml"));
-////        Scene menuScene = new Scene(menuParent, 600, 600);
-////
-////        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-////        window.setTitle("MoneyMotion");
-////        window.setScene(menuScene);
-////        window.show();
-//    }
 
 }

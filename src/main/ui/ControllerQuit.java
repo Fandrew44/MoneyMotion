@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+//Controller for the Quit scene
 public class ControllerQuit implements Initializable {
 
     private SceneManager sceneManager;
