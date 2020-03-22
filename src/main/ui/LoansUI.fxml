@@ -11,11 +11,11 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="600.0" styleClass="container" stylesheets="@MainStylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ControllerLoans">
    <children>
-      <TableView fx:id="tableView" editable="true" layoutY="57.0" prefHeight="543.0" prefWidth="600.0">
+      <TableView fx:id="tableView" editable="true" layoutY="57.0" onMouseClicked="#selectRow" prefHeight="543.0" prefWidth="600.0" styleClass="container" stylesheets="@MainStylesheet.css">
          <columns>
-            <TableColumn fx:id="names" prefWidth="232.0" text="Name" />
-            <TableColumn fx:id="transAmounts" minWidth="0.0" prefWidth="194.0" text="Transaction Amount ($)" />
-            <TableColumn fx:id="contacts" prefWidth="173.0" text="Contact" />
+            <TableColumn fx:id="names" prefWidth="143.0" text="Name" />
+            <TableColumn fx:id="transAmounts" minWidth="0.0" prefWidth="179.0" text="Transaction Amount ($)" />
+            <TableColumn fx:id="description" prefWidth="277.0" text="Description" />
          </columns>
       </TableView>
       <Label layoutX="52.0" layoutY="9.0" text="Loans">
@@ -24,9 +24,9 @@
          </font>
       </Label>
       <FontAwesomeIconView glyphName="USERS" layoutX="14.0" layoutY="47.0" size="35" text="" />
-      <JFXButton fx:id="menu" buttonType="RAISED" layoutX="527.0" layoutY="19.0" onAction="#menu" style="-fx-background-color: #ffffff;" text="Menu" />
-      <JFXButton fx:id="category" buttonType="RAISED" layoutX="414.0" layoutY="19.0" onAction="#categories" style="-fx-background-color: #ffffff;" text="Categories" />
-      <TextField fx:id="filteredField" layoutX="189.0" layoutY="19.0" prefHeight="31.0" prefWidth="200.0" promptText="Contact Name" />
+      <JFXButton fx:id="details" buttonType="RAISED" layoutX="376.0" layoutY="19.0" onAction="#contactDetails" style="-fx-background-color: #ffffff;" text="View Details" />
+      <JFXButton fx:id="category" buttonType="RAISED" layoutX="495.0" layoutY="19.0" onAction="#categories" style="-fx-background-color: #ffffff;" text="Categories" />
+      <TextField fx:id="filteredField" layoutX="189.0" layoutY="19.0" prefHeight="31.0" prefWidth="171.0" promptText="Contact Name" />
       <FontAwesomeIconView glyphName="SEARCH" layoutX="159.0" layoutY="44.0" size="25" text="" />
    </children>
 </AnchorPane>

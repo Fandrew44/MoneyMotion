@@ -25,14 +25,14 @@ public class ContactsReaderTest {
     public void testReadContactsFileFound() {
         try {
             ArrayList<Contact> contacts = cr.readContacts(new File("./data/SavedContacts.txt"));
-            Contact jeffrey = contacts.get(0);
-            assertEquals("Jeffrey", jeffrey.getName());
-            assertEquals("an intelligent fellow", jeffrey.getDescription());
-            assertEquals(55.68, jeffrey.getTransAmount());
-            assertEquals(2020, jeffrey.getYear());
-            assertEquals(2, jeffrey.getMonth());
-            assertEquals(19, jeffrey.getDay());
-            assertEquals("d", jeffrey.getTransType());
+            Contact adrian = contacts.get(0);
+            assertEquals("adrian", adrian.getName());
+            assertEquals("buff kid", adrian.getDescription());
+            assertEquals(50.0, adrian.getTransAmount());
+            assertEquals(2020, adrian.getYear());
+            assertEquals(2, adrian.getMonth());
+            assertEquals(26, adrian.getDay());
+            assertEquals("d", adrian.getTransType());
 
         } catch (FileNotFoundException e) {
             fail("FileNotFoundException should not be thrown here!");
@@ -71,15 +71,15 @@ public class ContactsReaderTest {
         try {
             Scanner scanner = new Scanner(new File("./data/SavedContacts.txt"));
             ArrayList<String> properties = cr.separateProperties(scanner.nextLine());
-            Contact jeffrey = cr.createContact(properties);
+            Contact adrian = cr.createContact(properties);
 
-            assertEquals("Jeffrey", jeffrey.getName());
-            assertEquals("an intelligent fellow", jeffrey.getDescription());
-            assertEquals(55.68, jeffrey.getTransAmount());
-            assertEquals(2020, jeffrey.getYear());
-            assertEquals(2, jeffrey.getMonth());
-            assertEquals(19, jeffrey.getDay());
-            assertEquals("d", jeffrey.getTransType());
+            assertEquals("adrian", adrian.getName());
+            assertEquals("buff kid", adrian.getDescription());
+            assertEquals(50.0, adrian.getTransAmount());
+            assertEquals(2020, adrian.getYear());
+            assertEquals(2, adrian.getMonth());
+            assertEquals(26, adrian.getDay());
+            assertEquals("d", adrian.getTransType());
         } catch (FileNotFoundException e) {
             fail("FileNotFoundException should not be thrown here!");
         }

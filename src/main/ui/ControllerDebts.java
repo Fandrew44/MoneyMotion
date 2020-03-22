@@ -1,29 +1,18 @@
 package ui;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
 import model.Category;
 import model.Contact;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.URL;
-import java.text.NumberFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 //Controller for the debts scene
@@ -31,7 +20,7 @@ public class ControllerDebts implements Initializable {
 
     private SceneManager sceneManager;
 
-    //TODO: IMPLEMENT THE DEBTS LIST
+    private Contact selectedContact;
 
     @FXML
     private TableView<Contact> tableView;
@@ -48,13 +37,13 @@ public class ControllerDebts implements Initializable {
 
 
     @FXML
-    private TableColumn<Contact, String> contacts;
+    private TableColumn<Contact, String> description;
 
     @FXML
     private Category contactDetails;
 
     @FXML
-    private Button menu;
+    private Button details;
 
     @FXML
     private Button category;
@@ -66,27 +55,19 @@ public class ControllerDebts implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         sceneManager = new SceneManager();
-        sceneManager.hoverEffect(menu);
+        sceneManager.hoverEffect(details);
         sceneManager.hoverEffect(category);
 
         //Associating the data model property value to the column ??????????????????????????
         names.setCellValueFactory(new PropertyValueFactory<Contact, String>("name"));
         transAmounts.setCellValueFactory(new PropertyValueFactory<Contact, String>("transAmount"));
-        contacts.setCellValueFactory(new PropertyValueFactory<Contact, String>("button"));
+        description.setCellValueFactory(new PropertyValueFactory<Contact, String>("description"));
 
         contactDetails = DataState.getState().getDebts();
         LinkedList<Contact> debtsList = contactDetails.getContactsList();
 
         for (Contact c : debtsList) {
             dataList.add(c);
-            Button b = c.getButton();
-            b.setOnAction(event -> {
-                try {
-                    sceneManager.assignAction(event, c);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
         }
 
         //Wrap the ObservableList in a FilteredList (while initially displaying ALL the contacts)
@@ -103,6 +84,24 @@ public class ControllerDebts implements Initializable {
     //EFFECTS: Changes the scene to the categories scene
     public void categories(ActionEvent actionEvent) throws IOException {
         sceneManager.updateScene(sceneManager.categoriesScene, actionEvent);
+    }
+
+    @FXML
+    //MODIFIES: this
+    //EFFECTS: Displays the selected row and updates selectedContact
+    public void selectRow() {
+        selectedContact = tableView.getSelectionModel().getSelectedItem();
+    }
+
+    @FXML
+    //MODIFIES: this
+    //EFFECTS: Changes the scene to the contact details scene of contact
+    public void contactDetails(ActionEvent actionEvent) {
+        try {
+            sceneManager.assignAction(actionEvent, selectedContact);
+        } catch (Exception e) {
+            return;
+        }
     }
 }
 
