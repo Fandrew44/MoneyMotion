@@ -20,4 +20,9 @@ public class NeutralTest {
         assertEquals(0, neutral.getContactsListSize());
         assertTrue(neutral.isEmpty());
     }
+
+    @Test
+    public void testTotalFinancies() {
+        assertEquals(0, neutral.totalFinances());
+    }
 }

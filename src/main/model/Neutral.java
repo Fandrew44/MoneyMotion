@@ -14,6 +14,5 @@ public class Neutral extends Category {
         return 0.00;
     }
 
-    //Methods are inherited
 
 }
