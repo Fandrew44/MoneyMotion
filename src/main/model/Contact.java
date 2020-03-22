@@ -31,7 +31,7 @@ public class Contact implements SaveableData {
         date = LocalDate.of(year, month, day);
         this.transType = transType;
         status = " ";
-}
+    }
 
     public String getName() {
         return name;
