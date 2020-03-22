@@ -115,5 +115,10 @@ public class ContactTest {
         assertEquals("n", c.getTransType());
     }
 
+    @Test
+    public void testToString() {
+        assertEquals("$35.00", c.toString());
+    }
+
 
 }

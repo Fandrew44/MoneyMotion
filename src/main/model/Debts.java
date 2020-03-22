@@ -20,6 +20,4 @@ public class Debts extends Category {
         return totalAmount;
     }
 
-    //Methods are inherited
-
 }
