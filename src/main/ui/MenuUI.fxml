@@ -13,11 +13,11 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-      <JFXButton fx:id="createContact" buttonType="RAISED" layoutX="37.0" layoutY="285.0" onAction="#createNewContact" style="-fx-background-color: #ffffff;" text="Create a New Contact [Add Icon]" />
-      <JFXButton fx:id="categories" buttonType="RAISED" layoutX="387.0" layoutY="285.0" onAction="#categories" style="-fx-background-color: #ffffff;" text="Categories [Add Icon]" />
+      <JFXButton fx:id="createContact" buttonType="RAISED" layoutX="120.0" layoutY="285.0" onAction="#createNewContact" style="-fx-background-color: #ffffff;" text="Create a New Contact" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="315.0" />
+      <JFXButton fx:id="categories" buttonType="RAISED" layoutX="356.0" layoutY="285.0" onAction="#categories" style="-fx-background-color: #ffffff;" text="Categories" />
       <JFXButton fx:id="saveContacts" buttonType="RAISED" layoutX="253.0" layoutY="452.0" onAction="#saveContacts" style="-fx-background-color: #ffffff;" text="Save Contacts" />
       <JFXButton fx:id="quit" buttonType="RAISED" layoutX="285.0" layoutY="527.0" onAction="#quit" style="-fx-background-color: #ffffff;" text="Quit" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4565654" height="94.0" layoutX="111.0" layoutY="121.0" stroke="BLACK" strokeType="INSIDE" width="408.0" />
-      <ImageView fx:id="logo" fitHeight="526.0" fitWidth="563.0" layoutX="-161.0" layoutY="-210.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="284.0" AnchorPane.leftAnchor="-161.0" AnchorPane.rightAnchor="198.0" AnchorPane.topAnchor="-210.0" />
+      <ImageView fx:id="logo" fitHeight="526.0" fitWidth="563.0" layoutX="-162.0" layoutY="-289.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="284.0" AnchorPane.leftAnchor="-161.0" AnchorPane.rightAnchor="198.0" AnchorPane.topAnchor="-210.0" />
    </children>
 </AnchorPane>

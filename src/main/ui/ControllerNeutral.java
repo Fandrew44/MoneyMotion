@@ -70,7 +70,6 @@ public class ControllerNeutral implements Initializable {
         for (Contact c : neutralList) {
             dataList.add(c);
         }
-        System.out.println(dataList);
 
         //Wrap the ObservableList in a FilteredList (while initially displaying ALL the contacts)
         sceneManager.createSearchBar(dataList, filteredField, tableView);

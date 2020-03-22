@@ -20,6 +20,15 @@
 > - As a user, when exiting the program, I want to be able to choose to save all the Contacts and their details in each Category to file
 > - As a user, I want to be able to load all of the Contacts that were previously placed in each Category from file automatically when the program starts
 
+## Instructions for Grader
 
+> - You can generate the first required event by: Clicking on "Start" -> "Create a New Contact" -> Filling in the properties of the Contact -> "Create Contact" (button event)
+> - You can generate the second required event in 2 ways:
+>> 1. "Start" -> "Categories" -> "Debts" or "Loans" or "Neutral" -> Searching for a Contact by name in the Search Bar located at the top (keyboard event)
+>> 2. "Start" -> "Categories" -> "Debts" or "Loans" or "Neutral" -> Click on a Contact -> "View Details" (button event)
+> - You can locate my visual component by: My main logo found in the **main menu** and my logo at the top left corner of several scenes
+> - You can locate my audio component by: "Start" -> "Create a New Contact" -> Filling in the properties of the Contact -> Turn up your sound -> "Create Contact" -> "Ding" Sound indicating Contact has been successfully created
+> - You can save the state of my application by: "Quit" -> "Yes" OR "Start" -> "Save Contacts"
+> - The application *automatically* loads the saved state from previous sessions
 
 
