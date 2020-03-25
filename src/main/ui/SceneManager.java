@@ -35,7 +35,6 @@ public class SceneManager {
     protected final String quitScene = "QuitUI.fxml";
     protected final String createContactScene = "CreateContactUI.fxml";
     protected final String categoriesScene = "CategoriesUI.fxml";
-    protected final String savedContactsPopupScene = "contactsSavedPopupUI.fxml";
     protected final String debtsScene = "DebtsUI.fxml";
     protected final String loansScene = "LoansUI.fxml";
     protected final String neutralScene = "NeutralUI.fxml";
