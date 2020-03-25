@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 public class ControllerMenu implements Initializable {
 
     private SceneManager sceneManager;
+    private ButtonManager buttonManager;
 
     @FXML
     protected Button createContact;
@@ -47,10 +48,11 @@ public class ControllerMenu implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sceneManager = new SceneManager();
-        sceneManager.hoverEffect(createContact);
-        sceneManager.hoverEffect(categories);
-        sceneManager.hoverEffect(saveContacts);
-        sceneManager.hoverEffect(quit);
+        buttonManager = new ButtonManager();
+        buttonManager.hoverEffect(createContact);
+        buttonManager.hoverEffect(categories);
+        buttonManager.hoverEffect(saveContacts);
+        buttonManager.hoverEffect(quit);
         totalFinances.setText("Current Financial Situation: " + DataState.printFinancialSituation());
 
         try {

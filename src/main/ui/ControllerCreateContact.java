@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 public class ControllerCreateContact implements Initializable {
 
     private SceneManager sceneManager;
+    private ButtonManager buttonManager;
 
     private File audioFile = new File("./data/ding.wav");
 
@@ -60,8 +61,9 @@ public class ControllerCreateContact implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sceneManager = new SceneManager();
-        sceneManager.hoverEffect(menu);
-        sceneManager.hoverEffect(createContact);
+        buttonManager = new ButtonManager();
+        buttonManager.hoverEffect(menu);
+        buttonManager.hoverEffect(createContact);
         debts = DataState.getState().getDebts();
         loans = DataState.getState().getLoans();
         neutral = DataState.getState().getNeutral();
