@@ -22,6 +22,8 @@ import java.util.ResourceBundle;
 public class ControllerLoans implements Initializable {
 
     private SceneManager sceneManager;
+    private TableManager tableManager;
+    private ButtonManager buttonManager;
 
     private Contact selectedContact;
 
@@ -57,24 +59,28 @@ public class ControllerLoans implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         sceneManager = new SceneManager();
-        sceneManager.hoverEffect(details);
-        sceneManager.hoverEffect(category);
+        tableManager = new TableManager();
+        buttonManager = new ButtonManager();
+        buttonManager.hoverEffect(category);
+        buttonManager.hoverEffect(details);
 
-        //Associating the data model property value to the column ??????????????????????????
-        names.setCellValueFactory(new PropertyValueFactory<Contact, String>("name"));
-        transAmounts.setCellValueFactory(new PropertyValueFactory<Contact, String>("transAmount"));
-        description.setCellValueFactory(new PropertyValueFactory<Contact, String>("description"));
-
-
-        contactDetails = DataState.getState().getLoans();
-        LinkedList<Contact> loansList = contactDetails.getContactsList();
-
-        for (Contact c : loansList) {
-            dataList.add(c);
-        }
+        //TODO: DELETE THIS DUPLICATED IMPLEMENTATION
+//        //Associating the data model property value to the column ??????????????????????????
+//        names.setCellValueFactory(new PropertyValueFactory<Contact, String>("name"));
+//        transAmounts.setCellValueFactory(new PropertyValueFactory<Contact, String>("transAmount"));
+//        description.setCellValueFactory(new PropertyValueFactory<Contact, String>("description"));
+//
+//
+//        contactDetails = DataState.getState().getLoans();
+//        LinkedList<Contact> loansList = contactDetails.getContactsList();
+//
+//        for (Contact c : loansList) {
+//            dataList.add(c);
+//        }
+        tableManager.initializeTable(names, transAmounts, description, "l", dataList);
 
         //Wrap the ObservableList in a FilteredList (while initially displaying ALL the contacts)
-        sceneManager.createSearchBar(dataList, filteredField, tableView);
+        tableManager.createSearchBar(dataList, filteredField, tableView);
     }
 
     @FXML

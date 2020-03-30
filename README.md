@@ -31,4 +31,8 @@
 > - You can save the state of my application by: "Quit" -> "Yes" OR "Start" -> "Save Contacts"
 > - The application *automatically* loads the saved state from previous sessions
 
+## Phase 4: Task 2
+> In my program, I have chosen to implement option 2: incorporating a **type hierarchy** into my code (other than the Saveable interface). My type hierarchy consists of the *Debts*, *Loans*, and *Neutral* Classes which all 
+> extend the *Category* Abstract Class. Furthermore, *Category* contains the declaration of the *totalFinances* Abstract Method, with each of *Category*'*s* Subclasses containing their
+> own unique implementation for the *totalFinances* Method.
 

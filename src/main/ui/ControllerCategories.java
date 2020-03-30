@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 public class ControllerCategories implements Initializable {
 
     private SceneManager sceneManager;
+    private ButtonManager buttonManager;
 
     @FXML
     private Button debts;
@@ -41,10 +42,11 @@ public class ControllerCategories implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sceneManager = new SceneManager();
-        sceneManager.hoverEffect(debts);
-        sceneManager.hoverEffect(loans);
-        sceneManager.hoverEffect(neutral);
-        sceneManager.hoverEffect(menu);
+        buttonManager = new ButtonManager();
+        buttonManager.hoverEffect(debts);
+        buttonManager.hoverEffect(loans);
+        buttonManager.hoverEffect(neutral);
+        buttonManager.hoverEffect(menu);
 
         try {
             FileInputStream imageInput = new FileInputStream("./data/Logo.png");

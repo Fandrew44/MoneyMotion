@@ -24,14 +24,14 @@ import java.util.ResourceBundle;
 //Controller for the Contact Details scene
 public class ControllerContactDetails implements Initializable {
 
+    private SceneManager sceneManager;
+    private ButtonManager buttonManager;
+
     private Contact contact;
 
     private String debt = "Debt";
     private String loan = "Loan";
     private String neutral = "Neutral";
-
-    @FXML
-    private SceneManager sceneManager = new SceneManager();
 
     @FXML
     private Label nameLabel;
@@ -70,9 +70,11 @@ public class ControllerContactDetails implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        sceneManager.hoverEffect(returnButton);
-        sceneManager.hoverEffect(deleteContact);
-        sceneManager.hoverEffect(updateTransAmount);
+        sceneManager = new SceneManager();
+        buttonManager = new ButtonManager();
+        buttonManager.hoverEffect(returnButton);
+        buttonManager.hoverEffect(deleteContact);
+        buttonManager.hoverEffect(updateTransAmount);
 
         try {
             FileInputStream imageInput = new FileInputStream("./data/Logo.png");

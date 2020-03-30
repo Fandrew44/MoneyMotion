@@ -13,6 +13,8 @@ public class ControllerQuit implements Initializable {
 
     private SceneManager sceneManager;
 
+    private ButtonManager buttonManager;
+
     @FXML
     private Button yes;
 
@@ -23,8 +25,9 @@ public class ControllerQuit implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sceneManager = new SceneManager();
-        sceneManager.hoverEffect(yes);
-        sceneManager.hoverEffect(no);
+        buttonManager = new ButtonManager();
+        buttonManager.hoverEffect(yes);
+        buttonManager.hoverEffect(no);
     }
 
     @FXML

@@ -25,6 +25,8 @@ public class ControllerStart implements Initializable {
 
     private SceneManager sceneManager;
 
+    private ButtonManager buttonManager;
+
     @FXML
     private Button start;
 
@@ -37,8 +39,9 @@ public class ControllerStart implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sceneManager = new SceneManager();
-        sceneManager.hoverEffect(start);
-        sceneManager.hoverEffect(quit);
+        buttonManager = new ButtonManager();
+        buttonManager.hoverEffect(start);
+        buttonManager.hoverEffect(quit);
 
         try {
             FileInputStream imageInput = new FileInputStream("./data/MainLogo.png");
