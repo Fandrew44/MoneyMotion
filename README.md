@@ -36,3 +36,19 @@
 > extend the *Category* Abstract Class. Furthermore, *Category* contains the declaration of the *totalFinances* Abstract Method, with each of *Category*'*s* Subclasses containing their
 > own unique implementation for the *totalFinances* Method.
 
+## Phase 4: Task 3
+> The first problem that I decided to address within my code was the low cohesion that existed within my *SceneManager* Class. When I first created the Class, its responsibility was intended
+> to be for general operations that were used to adjust the state and properties of the scenes within my program. However, as I introduced more operations into my code, I mistakenly clumped them
+> into the *SceneManager* Class, causing its responsibilities to broaden and extend beyond what was originally intended. To fix this issue, I created two new classes: 
+> *ButtonManager* and *TableManager*. With these two new classes, with the first handling buttons and button effects and the second handling tables and table properties, I was able to refactor some of the
+> Methods within the *SceneManager* class and move them into the appropriate class out of the two. More specifically, I moved the **createSearchBar** Method into the *TableManager* Class and 
+> the **hoverEffect** Method into the *ButtonManager* Class. Furthermore, to fix the compilation errors that occurred, I created new association relationships between all of the Controller classes and the new
+> *ButtonManager* and *TableManager* Classes by declaring and instantiating a field of their types and invoking the corresponding Methods needed within the particular scene.
+
+> The second problem that I addressed was the high coupling between the *ControllerDebts*, *ControllerLoans*, and *ControllerNeutral* Classes. I noticed that, within the **initialize** Method of each of these classes,
+> there existed highly problematic coupling in the form of duplicated implementation. As I learned through the videos and lectures, having the same implementation that must be maintained between several different Methods
+> is very problematic as any changes made to one would have to also be made to all of the rest. Furthermore, this issue is not something that the compiler can detect for us, and so it becomes much more difficult 
+> to identify when the implementation become out of sync. Interestingly enough, I actually experienced the consequences of this problem first hand when I noticed that the implementation within the **initialize** Method in the
+> *ControllerNeutral* Class was slightly different from the other two Controller classes, causing the UI to appear slightly different than what I wanted. To fix this issue, I refactored the implementation common to the **initialize**
+> Methods of all 3 of the Controller Classes by abstracting it into a brand new Method: **initializeTable**. I placed this new Method into the *TableManager* Class to avoid any issues involving cohesion and, in order to make sure the
+> I did not change the functionality of the program, I invoked **initializeTable** in the **initialize** Methods of each of the 3 Controller Methods along with passing in their corresponding arguments.
