@@ -53,20 +53,12 @@ public class ControllerCreateContact implements Initializable {
     @FXML
     private ImageView logo;
 
-    private Category debts;
-    private Category loans;
-    private Category neutral;
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sceneManager = new SceneManager();
         buttonManager = new ButtonManager();
         buttonManager.hoverEffect(menu);
         buttonManager.hoverEffect(createContact);
-        debts = DataState.getState().getDebts();
-        loans = DataState.getState().getLoans();
-        neutral = DataState.getState().getNeutral();
 
         try {
             FileInputStream imageInput = new FileInputStream("./data/Logo.png");

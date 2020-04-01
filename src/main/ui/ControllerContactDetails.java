@@ -26,7 +26,6 @@ public class ControllerContactDetails implements Initializable {
 
     private SceneManager sceneManager;
     private ButtonManager buttonManager;
-
     private Contact contact;
 
     private String debt = "Debt";

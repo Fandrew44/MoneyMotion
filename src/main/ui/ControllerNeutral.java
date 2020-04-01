@@ -24,7 +24,6 @@ public class ControllerNeutral implements Initializable {
     private SceneManager sceneManager;
     private TableManager tableManager;
     private ButtonManager buttonManager;
-
     private Contact selectedContact;
 
     @FXML
@@ -44,9 +43,6 @@ public class ControllerNeutral implements Initializable {
     private TableColumn<Contact, String> description;
 
     @FXML
-    private Category contactDetails;
-
-    @FXML
     private Button details;
 
     @FXML
@@ -63,19 +59,6 @@ public class ControllerNeutral implements Initializable {
         buttonManager = new ButtonManager();
         buttonManager.hoverEffect(details);
         buttonManager.hoverEffect(category);
-
-        //TODO: DELETE THIS DUPLICATED IMPLEMENTATION
-//        //Associating the data model property value to the column ??????????????????????????
-//        names.setCellValueFactory(new PropertyValueFactory<Contact, String>("name"));
-//        transAmounts.setCellValueFactory(new PropertyValueFactory<Contact, String>("transAmount"));
-//        description.setCellValueFactory(new PropertyValueFactory<Contact, String>("description"));
-//
-//        contactDetails = DataState.getState().getNeutral();
-//        LinkedList<Contact> neutralList = contactDetails.getContactsList();
-//
-//        for (Contact c : neutralList) {
-//            dataList.add(c);
-//        }
 
         tableManager.initializeTable(names, transAmounts, description, "n", dataList);
 

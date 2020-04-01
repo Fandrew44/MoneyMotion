@@ -18,7 +18,6 @@ import java.util.LinkedList;
 public class TableManager {
 
     private Category contactDetails;
-
     private ObservableList<Contact> dataList = FXCollections.observableArrayList();
 
     @FXML

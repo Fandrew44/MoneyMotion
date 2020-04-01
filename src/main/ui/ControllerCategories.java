@@ -34,9 +34,6 @@ public class ControllerCategories implements Initializable {
     private Button menu;
 
     @FXML
-    private Label blankLabel;
-
-    @FXML
     private ImageView logo;
 
     @Override

@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 public class ControllerQuit implements Initializable {
 
     private SceneManager sceneManager;
-
     private ButtonManager buttonManager;
 
     @FXML

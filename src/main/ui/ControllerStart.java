@@ -24,7 +24,6 @@ import java.util.ResourceBundle;
 public class ControllerStart implements Initializable {
 
     private SceneManager sceneManager;
-
     private ButtonManager buttonManager;
 
     @FXML

@@ -24,7 +24,6 @@ public class ControllerLoans implements Initializable {
     private SceneManager sceneManager;
     private TableManager tableManager;
     private ButtonManager buttonManager;
-
     private Contact selectedContact;
 
     @FXML
@@ -44,9 +43,6 @@ public class ControllerLoans implements Initializable {
     private TableColumn<Contact, String> description;
 
     @FXML
-    private Category contactDetails;
-
-    @FXML
     private Button details;
 
     @FXML
@@ -64,19 +60,6 @@ public class ControllerLoans implements Initializable {
         buttonManager.hoverEffect(category);
         buttonManager.hoverEffect(details);
 
-        //TODO: DELETE THIS DUPLICATED IMPLEMENTATION
-//        //Associating the data model property value to the column ??????????????????????????
-//        names.setCellValueFactory(new PropertyValueFactory<Contact, String>("name"));
-//        transAmounts.setCellValueFactory(new PropertyValueFactory<Contact, String>("transAmount"));
-//        description.setCellValueFactory(new PropertyValueFactory<Contact, String>("description"));
-//
-//
-//        contactDetails = DataState.getState().getLoans();
-//        LinkedList<Contact> loansList = contactDetails.getContactsList();
-//
-//        for (Contact c : loansList) {
-//            dataList.add(c);
-//        }
         tableManager.initializeTable(names, transAmounts, description, "l", dataList);
 
         //Wrap the ObservableList in a FilteredList (while initially displaying ALL the contacts)
