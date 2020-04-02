@@ -37,6 +37,18 @@
 > own unique implementation for the *totalFinances* Method.
 
 ## Phase 4: Task 3
+
+> Areas with **low cohesion** include: The *SceneManager* Class, the *DataState* Class, and the *ControllerContactDetails* Class. More specifically, the responsibilities of the *SceneManager* Class extend
+> far beyond what it was initially created for, which was simply to manage operations that were commons between all or most scenes. This is especially noticeable with the **createSearchBar** and **hoverEffect** Methods that are 
+> declared and implemented within the Class. When considering where to put the **saveContacts** and **loadContacts** Methods, 
+> I mistakenly added them into the *DataState* Class, whose responsibility up until that point was simply to maintain the state of the data. Furthermore, in regards to the *ControllerContactDetails* Class, its responsibilities began to
+> widen with the declaration and implementation of the **removeContact** Method, which is an operation outside of the Class' purpose of maintaining the details of a particular Contact.
+
+> Areas with **high coupling** mainly consists of the *ControllerDebts*, *ControllerLoans*, and *ControllerNeutral* Classes. In all three of these classes, there exists high coupling in the form of duplicated implementation within the 
+> **initialize** Methods of each of these classes, which increases the potential for error when making changes to the implementation within any of these Classes. In addition, I noticed that the **initialize** Method in general contained quite
+> troublesome levels of coupling in regards to the duplicated invocation of the **hoverEffect** Method which is present in nearly all Classes. Once again, if any changes were made to the implementation of the **initialize** Method in any of the 
+> Classes, we would have to manually ensure (without the help of the compiler) that the change was replicated throughout *all* of the **initialize** Methods.
+
 > The first problem that I decided to address within my code was the low cohesion that existed within my *SceneManager* Class. When I first created the Class, its responsibility was intended
 > to be for general operations that were used to adjust the state and properties of the scenes within my program. However, as I introduced more operations into my code, I mistakenly clumped them
 > into the *SceneManager* Class, causing its responsibilities to broaden and extend beyond what was originally intended. To fix this issue, I created two new classes: 
