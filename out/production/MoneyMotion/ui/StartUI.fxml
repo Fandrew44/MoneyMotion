@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" styleClass="container" stylesheets="@MainStylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ControllerStart">
+   <children>
+      <JFXButton fx:id="start" buttonType="RAISED" layoutX="267.0" layoutY="412.0" onAction="#start" onMouseEntered="#quit" style="-fx-background-color: #ffffff;" text="Start" />
+      <JFXButton fx:id="quit" buttonType="RAISED" layoutX="268.0" layoutY="473.0" onAction="#quit" style="-fx-background-color: #ffffff;" text="Quit" />
+      <ImageView fx:id="mainLogo" fitHeight="572.0" fitWidth="689.0" layoutX="72.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
